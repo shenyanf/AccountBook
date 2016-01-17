@@ -1,0 +1,9 @@
+<resources>
+    <item name="add_note_linearlayout" type="id" />
+    <item name="list_fragment" type="id" />
+    <item name="send_message_layout" type="id" />
+    <item name="set_income_and_expense_layout" type="id" />
+    <item name="set_account_layout" type="id" />
+    <item name="income_layout" type="id"/>
+    <item name="expenses_layout" type="id"/>
+</resources>

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">我的账本</string>
+    <string name="action_settings">设置</string>
+    <string name="action_search">Search</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="button_add">Add</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="select_account">账 户</string>
+    <string name="select_income_expenses_type">收/支</string>
+    <string name="add_record_amount">金额</string>
+    <string name="add_record_remarks">备注</string>
+    <string name="store">保存</string>
+
+    <string name="set_income_and_expenses">收支项管理</string>
+    <string name="about_author">关于</string>
+    <string name="statistics">统计</string>
+    <string name="income">收入</string>
+    <string name="expenses">支出</string>
+
+    <string name="title_activity_pie_chart">统计</string>
+
+    <string name="manage_records">记录管理</string>
+    <array name="records_menu">
+        <item>修改记录</item>
+        <item>删除记录</item>
+    </array>
+
+    <string name="manage_account">账户管理</string>
+    <array name="account_menu">
+        <item>修改账户</item>
+        <item>删除账户</item>
+    </array>
+
+    <string name="add_account">添加账户</string>
+    <string name="add_account_name">账户名称</string>
+
+    <string name="manage_income_expenses">收支项管理</string>
+    <array name="income_expenses_menu">
+        <item>修改收支项</item>
+        <item>删除收支项</item>
+    </array>
+    <array name="income_expenses_item">
+        <item>收入</item>
+        <item>支出</item>
+    </array>
+    <string name="add_income_expenses">添加收支项</string>
+    <string name="add_income_expenses_name">收支项名称</string>
+</resources>
