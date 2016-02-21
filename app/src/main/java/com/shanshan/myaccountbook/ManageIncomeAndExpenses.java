@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.shanshan.myaccountbook.button.AddButton;
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
 public class ManageIncomeAndExpenses extends AppCompatActivity {
@@ -72,12 +72,12 @@ public class ManageIncomeAndExpenses extends AppCompatActivity {
         String incomeOrExpensesId = String.valueOf(info.id + 1);
 
         if (menuItemName.equals("删除收支项")) {
-            System.out.println("删除收支项" + myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpenses.ID + "=?", new String[]{incomeOrExpensesId}));
+            System.out.println("删除收支项" + myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrExpensesId}));
             myDBHelper.deleteIncomeOrExpenses(incomeOrExpensesId);
             onResume();
         } else {
             Intent intent = new Intent(this, AddIncomeAndExpenses.class);
-            intent.putExtra(DBTablesDefinition.IncomeOrExpenses.TABLE_INOREXP_NAME + DBTablesDefinition.IncomeOrExpenses.ID, incomeOrExpensesId);
+            intent.putExtra(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + IncomeOrExpensesDefinition.ID, incomeOrExpensesId);
             startActivity(intent);
         }
         return true;

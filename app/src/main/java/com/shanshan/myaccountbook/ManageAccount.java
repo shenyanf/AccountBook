@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.shanshan.myaccountbook.button.AddButton;
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
 public class ManageAccount extends AppCompatActivity {
@@ -73,12 +73,12 @@ public class ManageAccount extends AppCompatActivity {
         String accountId = String.valueOf(info.id + 1);
 
         if (menuItemName.equals("删除账户")) {
-            System.out.println("删除账户" + myDBHelper.getAccount(DBTablesDefinition.Accounts.ID + "=?", new String[]{accountId}));
+            System.out.println("删除账户" + myDBHelper.getAccount(AccountsDefinition.ID + "=?", new String[]{accountId}));
             myDBHelper.deleteAccount(accountId);
             onResume();
         } else {
             Intent intent = new Intent(this, AddAccountActivity.class);
-            intent.putExtra(DBTablesDefinition.Accounts.ID, accountId);
+            intent.putExtra(AccountsDefinition.ID, accountId);
             startActivity(intent);
         }
         return true;
@@ -89,7 +89,7 @@ public class ManageAccount extends AppCompatActivity {
         super.onResume();
         adapterAccount.clear();
         System.out.println("manage account on resume function");
-        adapterAccount.addAll(myDBHelper.getAccount(DBTablesDefinition.Accounts.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(DBTablesDefinition.Accounts.ACCOUNT_AVAILABLE)}));
+        adapterAccount.addAll(myDBHelper.getAccount(AccountsDefinition.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(AccountsDefinition.ACCOUNT_AVAILABLE)}));
         adapterAccount.notifyDataSetChanged();
     }
 }

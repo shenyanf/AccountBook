@@ -19,6 +19,8 @@ import com.shanshan.myaccountbook.entity.Entities;
 
 import org.apache.log4j.Logger;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecordsListFragment.OnFragmentInteractionListener {
@@ -36,20 +38,26 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         switch (tabPosition) {
             case 1:
                 date = "week";
-                list = Entities.WEEKLY_STATISTICS_ID;
+                list = myDBHelper.getWeeklyStatistics(null, null);
                 break;
             case 2:
                 date = "month";
-                list = Entities.MONTHLY_STATISTICS_ID;
+                list = myDBHelper.getMonthlyStatistics(null, null);
                 break;
             case 3:
                 date = "annual";
-                list = Entities.ANNUAL_STATISTICS_ID;
+                list = myDBHelper.getAnnualStatistics(null, null);
                 break;
             default:
                 date = "day";
-                list = Entities.RECORDS_ID;
+                list = myDBHelper.getRecords();
         }
+        Collections.sort(list, new Comparator<Entities.AbstractRecord>() {
+            @Override
+            public int compare(Entities.AbstractRecord lhs, Entities.AbstractRecord rhs) {
+                return -lhs.date.compareTo(rhs.date);
+            }
+        });
         return list;
     }
 
@@ -180,9 +188,9 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 
     @Override
     public void onFragmentInteraction(String id) {
-        List list = getRecordListfromTabPosition();
+        List<Entities.AbstractRecord> list = getRecordListfromTabPosition();
         Toast.makeText(getApplicationContext(),
-                list.get(Integer.valueOf(id)).toString(),
+                list.get(Integer.valueOf(id)).detail(),
                 Toast.LENGTH_SHORT).show();
     }
 

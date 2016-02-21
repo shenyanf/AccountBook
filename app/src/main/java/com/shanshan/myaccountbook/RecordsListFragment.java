@@ -16,9 +16,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 import com.shanshan.myaccountbook.entity.Entities;
+import com.shanshan.myaccountbook.entity.Entities.AnnualStatisticsEntity;
+import com.shanshan.myaccountbook.entity.Entities.MonthlyStatisticsEntity;
+import com.shanshan.myaccountbook.entity.Entities.RecordsEntity;
+import com.shanshan.myaccountbook.entity.Entities.WeeklyStatisticsEntity;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +40,7 @@ import java.util.List;
 public class RecordsListFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private List list = null;
-    private List<Entities.Records> recordList = null;
+    private List<RecordsEntity> recordList = null;
     private MyDBHelper myDBHelper;
 
     private OnFragmentInteractionListener mListener = null;
@@ -103,7 +108,7 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
 
             Collections.sort(recordList);
 
-            mAdapter = new ArrayAdapter<Entities.Records>(getActivity(),
+            mAdapter = new ArrayAdapter<RecordsEntity>(getActivity(),
                     R.layout.list_item_layout, android.R.id.text1, recordList);
         }
         if (date.equals("week")) {
@@ -113,7 +118,7 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
 
             Collections.sort(list);
 
-            mAdapter = new ArrayAdapter<Entities.WeeklyStatistics>(getActivity(),
+            mAdapter = new ArrayAdapter<WeeklyStatisticsEntity>(getActivity(),
                     R.layout.list_item_layout, android.R.id.text1, list);
         }
         if (date.equals("month")) {
@@ -123,7 +128,7 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
 
             Collections.sort(list);
 
-            mAdapter = new ArrayAdapter<Entities.MonthlyStatistics>(getActivity(),
+            mAdapter = new ArrayAdapter<MonthlyStatisticsEntity>(getActivity(),
                     R.layout.list_item_layout, android.R.id.text1, list);
         }
         if (date.equals("annual")) {
@@ -133,7 +138,7 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
 
             Collections.sort(list);
 
-            mAdapter = new ArrayAdapter<Entities.AnnualStatistics>(getActivity(),
+            mAdapter = new ArrayAdapter<AnnualStatisticsEntity>(getActivity(),
                     R.layout.list_item_layout, android.R.id.text1, list);
         }
         /* set spinner text font size */
@@ -258,14 +263,14 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
         String menuItemName = menuItems[menuItemIndex];
         String listItemName = "记录管理";
 
-        Entities.Records record = recordList.get((int) info.id);
+        RecordsEntity record = recordList.get((int) info.id);
         System.out.println("===++++++++++++" + record + "++++++++++++++========");
 
 
         if (date.equals("day")) {
             if (menuItemName.equals("删除记录")) {
                 System.out.println("删除记录" + record);
-                Entities.IncomeAndExpenses incomeAndExpenses = myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpenses.ID + "=?", new String[]{String.valueOf(record.incomeOrExpenses)}).get(0);
+                Entities.IncomeAndExpensesEntity incomeAndExpenses = myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{String.valueOf(record.incomeOrExpenses)}).get(0);
 
                 myDBHelper.updateWeeklyStatistics(record.date, -record.amount, incomeAndExpenses.flag);
                 myDBHelper.updateMonthlyStatistics(record.date, -record.amount, incomeAndExpenses.flag);
@@ -277,7 +282,7 @@ public class RecordsListFragment extends Fragment implements AdapterView.OnItemC
             if (menuItemName.equals("修改记录")) {
                 Intent intent = new Intent(getActivity(), AddRecordActivity.class);
 
-                intent.putExtra(DBTablesDefinition.Records.TABLE_RECORDS_NAME + DBTablesDefinition.Records.ID, record);
+                intent.putExtra(RecordsDefinition.TABLE_RECORDS_NAME + RecordsDefinition.ID, record);
                 startActivity(intent);
             }
         }

@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities;
+import com.shanshan.myaccountbook.entity.Entities.AccountsEntity;
 
 import org.apache.log4j.Logger;
 
@@ -28,10 +28,10 @@ public class AddAccountActivity extends AppCompatActivity {
         myDBHelper = MyDBHelper.newInstance(this);
 
         Intent intent = getIntent();
-        accountId = intent.getStringExtra(DBTablesDefinition.Accounts.ID);
+        accountId = intent.getStringExtra(AccountsDefinition.ID);
         if (accountId != null) {
             TextView textView = (TextView) findViewById(R.id.add_account_name);
-            Entities.Accounts accounts = myDBHelper.getAccount(DBTablesDefinition.Accounts.ID + "=?", new String[]{accountId}).get(0);
+            AccountsEntity accounts = myDBHelper.getAccount(AccountsDefinition.ID + "=?", new String[]{accountId}).get(0);
 
             textView.setText(accounts.name);
 
@@ -47,7 +47,7 @@ public class AddAccountActivity extends AppCompatActivity {
         }
 
         if (accountId != null) {
-            myDBHelper.updateAccount(accountId, accountName, DBTablesDefinition.Accounts.ACCOUNT_AVAILABLE);
+            myDBHelper.updateAccount(accountId, accountName, AccountsDefinition.ACCOUNT_AVAILABLE);
         } else {
             myDBHelper.addAccount(accountName);
         }

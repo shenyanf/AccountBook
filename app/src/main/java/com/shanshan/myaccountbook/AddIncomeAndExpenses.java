@@ -11,8 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities;
+import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpensesEntity;
 
 import org.apache.log4j.Logger;
 
@@ -40,10 +41,10 @@ public class AddIncomeAndExpenses extends Activity {
         spinnerIncomeOrExpenses.setAdapter(spinnerIncomeAndExpensesArrayAdapter);
 
         Intent intent = getIntent();
-        incomeOrExpensesId = intent.getStringExtra(DBTablesDefinition.IncomeOrExpenses.TABLE_INOREXP_NAME + DBTablesDefinition.IncomeOrExpenses.ID);
+        incomeOrExpensesId = intent.getStringExtra(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + IncomeOrExpensesDefinition.ID);
         if (incomeOrExpensesId != null) {
             TextView textView = (TextView) findViewById(R.id.add_income_expenses_name);
-            Entities.IncomeAndExpenses incomeAndExpenses = myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpenses.ID + "=?", new String[]{incomeOrExpensesId}).get(0);
+            IncomeAndExpensesEntity incomeAndExpenses = myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrExpensesId}).get(0);
 
             textView.setText(incomeAndExpenses.name);
             Spinner spinner = (Spinner) findViewById(R.id.spinner_income_expenses_type_income_expenses);

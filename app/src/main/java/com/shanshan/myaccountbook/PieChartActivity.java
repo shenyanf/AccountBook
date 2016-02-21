@@ -16,7 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
 import java.math.BigDecimal;
@@ -38,10 +39,10 @@ public class PieChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pie_chart);
 
         List<String> list = new ArrayList<>();
-        list.add(Boolean.TRUE + "#" + Boolean.TRUE + "#" + DBTablesDefinition.Accounts.TABLE_ACCOUNT_NAME + "." + DBTablesDefinition.Accounts.COLUMN_ACCOUNT_NAME);
-        list.add(Boolean.FALSE + "#" + Boolean.TRUE + "#" + DBTablesDefinition.Accounts.TABLE_ACCOUNT_NAME + "." + DBTablesDefinition.Accounts.COLUMN_ACCOUNT_NAME);
-        list.add(Boolean.TRUE + "#" + Boolean.FALSE + "#" + DBTablesDefinition.IncomeOrExpenses.TABLE_INOREXP_NAME + "." + DBTablesDefinition.IncomeOrExpenses.COLUMN_INOREXP_NAME);
-        list.add(Boolean.FALSE + "#" + Boolean.FALSE + "#" + DBTablesDefinition.IncomeOrExpenses.TABLE_INOREXP_NAME + "." + DBTablesDefinition.IncomeOrExpenses.COLUMN_INOREXP_NAME);
+        list.add(Boolean.TRUE + "#" + Boolean.TRUE + "#" + AccountsDefinition.TABLE_ACCOUNT_NAME + "." + AccountsDefinition.COLUMN_ACCOUNT_NAME);
+        list.add(Boolean.FALSE + "#" + Boolean.TRUE + "#" + AccountsDefinition.TABLE_ACCOUNT_NAME + "." + AccountsDefinition.COLUMN_ACCOUNT_NAME);
+        list.add(Boolean.TRUE + "#" + Boolean.FALSE + "#" + IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + "." + IncomeOrExpensesDefinition.COLUMN_INOREXP_NAME);
+        list.add(Boolean.FALSE + "#" + Boolean.FALSE + "#" + IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + "." + IncomeOrExpensesDefinition.COLUMN_INOREXP_NAME);
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), list);
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewpager);
@@ -233,7 +234,7 @@ public class PieChartActivity extends AppCompatActivity {
 
                 SliceValue sliceValue = new SliceValue(amount, ChartUtils.nextColor());
 
-                String label = (groupBy.contains(DBTablesDefinition.IncomeOrExpenses.TABLE_INOREXP_NAME) ? cursor.getString(4) : cursor.getString(1));
+                String label = (groupBy.contains(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME) ? cursor.getString(4) : cursor.getString(1));
                 sliceValue.setLabel(label + " " + amount);
                 values.add(sliceValue);
             }

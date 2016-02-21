@@ -15,7 +15,7 @@ public final class DBTablesDefinition {
     public static final int EXPENSES = 1;
 
     /* Inner class that defines the table records */
-    public static abstract class Records implements BaseColumns {
+    public static abstract class RecordsDefinition implements BaseColumns {
         /*records table */
         public static final String TABLE_RECORDS_NAME = "records";
         public static final String ID = "id";
@@ -28,7 +28,7 @@ public final class DBTablesDefinition {
     }
 
     /*monthly activity_statistics*/
-    public static abstract class MonthlyStatistics implements BaseColumns {
+    public static abstract class MonthlyStatisticsDefinition implements BaseColumns {
         public static final String TABLE_MONTHLY_STATISTICS_NAME = "monthlyStatistics";
         public static final String ID = "id";
         public static final String COLUMN_MONTHLY_STATISTICS_DATE = "date";
@@ -37,7 +37,7 @@ public final class DBTablesDefinition {
     }
 
     /*weekly activity_statistics*/
-    public static abstract class WeeklyStatistics implements BaseColumns {
+    public static abstract class WeeklyStatisticsDefinition implements BaseColumns {
         public static final String TABLE_WEEKLY_STATISTICS_NAME = "weeklyStatistics";
         public static final String ID = "id";
         public static final String COLUMN_WEEKLY_STATISTICS_DATE = "date";
@@ -46,7 +46,7 @@ public final class DBTablesDefinition {
     }
 
     /*activity_statistics for each year*/
-    public static abstract class AnnualStatistics implements BaseColumns {
+    public static abstract class AnnualStatisticsDefinition implements BaseColumns {
         public static final String TABLE_ANNUAL_STATISTICS_NAME = "annualStatistics";
         public static final String ID = "id";
         public static final String COLUMN_ANNUAL_STATISTICS_DATE = "date";
@@ -56,7 +56,7 @@ public final class DBTablesDefinition {
 
 
     /* Inner class that defines the table income/expenses */
-    public static abstract class IncomeOrExpenses implements BaseColumns {
+    public static abstract class IncomeOrExpensesDefinition implements BaseColumns {
         /*income or expenses table*/
         public static final String TABLE_INOREXP_NAME = "incomeOrExpenses";
         public static final String ID = "id";
@@ -67,7 +67,7 @@ public final class DBTablesDefinition {
     }
 
     /* Inner class that defines the table account */
-    public static abstract class Accounts implements BaseColumns {
+    public static abstract class AccountsDefinition implements BaseColumns {
         public static final String TABLE_ACCOUNT_NAME = "accounts";
         public static final String ID = "id";
         public static final String COLUMN_ACCOUNT_NAME = "name";

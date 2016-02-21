@@ -1,7 +1,7 @@
 package com.shanshan.myaccountbook;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,12 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
+import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities;
-import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpenses;
+import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpensesEntity;
+import com.shanshan.myaccountbook.entity.Entities.RecordsEntity;
 
 import org.apache.log4j.Logger;
 
@@ -28,6 +30,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AddRecordActivity extends Activity {
@@ -41,7 +44,7 @@ public class AddRecordActivity extends Activity {
     private TextView textView = null;
     private Boolean editRecord = Boolean.FALSE;
     private float previousAmount = 0.0f;
-    Entities.Records previousRecord = null;
+    RecordsEntity previousRecord = null;
 
     DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -58,7 +61,7 @@ public class AddRecordActivity extends Activity {
         myDBHelper = MyDBHelper.newInstance(this);
 
         Intent intent = getIntent();
-        previousRecord = (Entities.Records) intent.getSerializableExtra(DBTablesDefinition.Records.TABLE_RECORDS_NAME + DBTablesDefinition.Records.ID);
+        previousRecord = (RecordsEntity) intent.getSerializableExtra(RecordsDefinition.TABLE_RECORDS_NAME + RecordsDefinition.ID);
         /*check account and incomeOrexpenses exist or not*/
         if (myDBHelper.getAccount().isEmpty() || myDBHelper.getIncomeAndExpenses().isEmpty()) {
             Toast.makeText(this, "请先添加账户和收支项！", Toast.LENGTH_SHORT).show();
@@ -96,7 +99,7 @@ public class AddRecordActivity extends Activity {
 //            }
 //        });
 
-            textView.setOnClickListener(new View.OnClickListener() {
+           /* textView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -109,6 +112,38 @@ public class AddRecordActivity extends Activity {
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
 
+                }
+            });*/
+
+
+            final View dialogView = View.inflate(AddRecordActivity.this, R.layout.date_time_picker, null);
+            final AlertDialog alertDialog = new AlertDialog.Builder(AddRecordActivity.this).create();
+            final DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.date_picker);
+            final TimePicker timePicker = (TimePicker) dialogView.findViewById(R.id.time_picker);
+            timePicker.setIs24HourView(true);
+
+            dialogView.findViewById(R.id.date_time_set).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Calendar calendar = new GregorianCalendar(datePicker.getYear(),
+                            datePicker.getMonth(),
+                            datePicker.getDayOfMonth(),
+                            timePicker.getCurrentHour(),
+                            timePicker.getCurrentMinute());
+
+                    textView.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.HOUR_OF_DAY) +
+                            ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND));
+
+                    alertDialog.dismiss();
+                }
+            });
+            textView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    alertDialog.setView(dialogView);
+                    alertDialog.show();
                 }
             });
         }
@@ -134,10 +169,12 @@ public class AddRecordActivity extends Activity {
 
         } else {
             spinnerAccount.setVisibility(View.VISIBLE);
+
             spinnerAccount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                ((TextView) parent.getChildAt(0)).setTextSize(20, TypedValue.COMPLEX_UNIT_SP);
+                    spinnerAccount.setSelection(position);
                 }
 
                 @Override
@@ -208,20 +245,21 @@ public class AddRecordActivity extends Activity {
         float value = Float.valueOf(txt.toString());
         BigDecimal bigDecimal = new BigDecimal(value);
 
-        float amount = bigDecimal.setScale(2, 4).floatValue();
+        float amount = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 
         TextView remarkView = (TextView) findViewById(R.id.add_record_remarks);
         String remarks = remarkView.getText().toString();
 
-        Entities.IncomeAndExpenses incomeOrExpenses = null;
+        IncomeAndExpensesEntity incomeOrExpenses = null;
 
-        List<IncomeAndExpenses> list = myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpenses.ID + "=?", new String[]{incomeOrexpensesId});
+        List<IncomeAndExpensesEntity> list = myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrexpensesId});
         if (list != null && !list.isEmpty()) {
             incomeOrExpenses = list.get(0);
         }
         if (editRecord) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(DBTablesDefinition.Records.COLUMN_RECORDS_AMOUNT, amount);
+            contentValues.put(RecordsDefinition.COLUMN_RECORDS_AMOUNT, amount);
+            contentValues.put(RecordsDefinition.COLUMN_RECORDS_REMARKS, remarks);
             myDBHelper.updateRecord(contentValues, String.valueOf(previousRecord.id));
 
         } else {
