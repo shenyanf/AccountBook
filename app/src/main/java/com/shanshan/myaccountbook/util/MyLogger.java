@@ -1,6 +1,8 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.util;
 
 import android.os.Environment;
+
+import com.shanshan.myaccountbook.activity.MainActivity;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

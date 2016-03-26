@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,11 +17,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.shanshan.myaccountbook.util.MyAccountUtil;
+import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpensesEntity;
-import com.shanshan.myaccountbook.entity.Entities.RecordsEntity;
+import com.shanshan.myaccountbook.entity.IncomeAndExpensesEntity;
+import com.shanshan.myaccountbook.entity.DayRecordsEntity;
 
 import org.apache.log4j.Logger;
 
@@ -44,7 +47,7 @@ public class AddRecordActivity extends Activity {
     private TextView textView = null;
     private Boolean editRecord = Boolean.FALSE;
     private float previousAmount = 0.0f;
-    RecordsEntity previousRecord = null;
+    DayRecordsEntity previousRecord = null;
 
     DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -61,7 +64,7 @@ public class AddRecordActivity extends Activity {
         myDBHelper = MyDBHelper.newInstance(this);
 
         Intent intent = getIntent();
-        previousRecord = (RecordsEntity) intent.getSerializableExtra(RecordsDefinition.TABLE_RECORDS_NAME + RecordsDefinition.ID);
+        previousRecord = (DayRecordsEntity) intent.getSerializableExtra(RecordsDefinition.TABLE_RECORDS_NAME + RecordsDefinition.ID);
         /*check account and incomeOrexpenses exist or not*/
         if (myDBHelper.getAccount().isEmpty() || myDBHelper.getIncomeAndExpenses().isEmpty()) {
             Toast.makeText(this, "请先添加账户和收支项！", Toast.LENGTH_SHORT).show();
@@ -75,7 +78,7 @@ public class AddRecordActivity extends Activity {
 
         if (previousRecord != null) {
             editRecord = Boolean.TRUE;
-            textView.setText(previousRecord.date);
+            textView.setText(previousRecord.getDate());
             textView.setInputType(InputType.TYPE_NULL);
         } else {
             textView.setText(format1.format(getCurrDate()));
@@ -159,7 +162,7 @@ public class AddRecordActivity extends Activity {
         if (previousRecord != null) {
             int i = 0;
             for (i = 0; i <= adapterAccount.getCount(); i++) {
-                if (adapterAccount.getItemId(i) == Long.valueOf(previousRecord.accountNameId)) {
+                if (adapterAccount.getItemId(i) == Long.valueOf(previousRecord.getAccountNameId())) {
                     break;
                 }
             }
@@ -196,7 +199,7 @@ public class AddRecordActivity extends Activity {
         if (previousRecord != null) {
             int i = 0;
             for (i = 0; i <= adapterIncomeOrExpenses.getCount(); i++) {
-                if (adapterIncomeOrExpenses.getItemId(i) == Long.valueOf(previousRecord.incomeOrExpenses)) {
+                if (adapterIncomeOrExpenses.getItemId(i) == Long.valueOf(previousRecord.getIncomeOrExpenses())) {
                     break;
                 }
             }
@@ -221,13 +224,13 @@ public class AddRecordActivity extends Activity {
         }
 
         if (previousRecord != null) {
-            previousAmount = previousRecord.amount;
+            previousAmount = previousRecord.getAmount();
 
             TextView textView = (TextView) findViewById(R.id.add_record_amount);
-            textView.setText(String.valueOf(previousRecord.amount));
+            textView.setText(String.valueOf(previousRecord.getAmount()));
 
             TextView remarkView = (TextView) findViewById(R.id.add_record_remarks);
-            remarkView.setText(previousRecord.remarks);
+            remarkView.setText(previousRecord.getRemarks());
         }
     }
 
@@ -260,28 +263,28 @@ public class AddRecordActivity extends Activity {
             ContentValues contentValues = new ContentValues();
             contentValues.put(RecordsDefinition.COLUMN_RECORDS_AMOUNT, amount);
             contentValues.put(RecordsDefinition.COLUMN_RECORDS_REMARKS, remarks);
-            myDBHelper.updateRecord(contentValues, String.valueOf(previousRecord.id));
+            myDBHelper.updateRecord(contentValues, String.valueOf(previousRecord.getId()));
 
         } else {
             myDBHelper.addRecord(accountId, dateStr, Integer.valueOf(incomeOrexpensesId), amount, remarks);
         }
 
-        System.out.println("incomeOrExpenses is " + incomeOrExpenses);
+//        System.out.println("incomeOrExpenses is " + incomeOrExpenses);
         myLogger.debug("incomeOrExpenses is " + incomeOrExpenses);
 
-        System.out.println("date is" + dateStr);
-        System.out.println(" accountId is " + accountId);
-        System.out.println(" incomeOrexpenses is " + incomeOrExpenses);
-        System.out.println(" amount is " + amount);
+//        System.out.println("date is" + dateStr);
+//        System.out.println(" accountId is " + accountId);
+//        System.out.println(" incomeOrexpenses is " + incomeOrExpenses);
+//        System.out.println(" amount is " + amount);
         myLogger.debug("date is" + dateStr + " accountId is " + accountId +
                 " incomeOrexpenses is " + incomeOrExpenses + " amount is " + amount);
 
         if (editRecord) {
             amount = amount - previousAmount;
         }
-        myDBHelper.updateWeeklyStatistics(dateStr, amount, incomeOrExpenses.flag);
-        myDBHelper.updateMonthlyStatistics(dateStr, amount, incomeOrExpenses.flag);
-        myDBHelper.updateAnnualStatistics(dateStr, amount, incomeOrExpenses.flag);
+        myDBHelper.updateWeeklyStatistics(dateStr, amount, incomeOrExpenses.getFlag());
+        myDBHelper.updateMonthlyStatistics(dateStr, amount, incomeOrExpenses.getFlag());
+        myDBHelper.updateAnnualStatistics(dateStr, amount, incomeOrExpenses.getFlag());
 
         finish();
     }

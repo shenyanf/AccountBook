@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -13,19 +13,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities;
+import com.shanshan.myaccountbook.entity.AbstractRecord;
+import com.shanshan.myaccountbook.fragment.EnumFragment;
+import com.shanshan.myaccountbook.fragment.FragmentFactory;
+import com.shanshan.myaccountbook.fragment.RecordsListFragment;
+import com.shanshan.myaccountbook.util.MyLogger;
 
 import org.apache.log4j.Logger;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecordsListFragment.OnFragmentInteractionListener {
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
-
+    private FragmentFactory fragmentFactory = null;
     private Logger myLogger = MyLogger.getMyLogger(MainActivity.class.getName());
     private RecordsListFragment details = null;
     private MyDBHelper myDBHelper = null;
@@ -34,33 +36,39 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 
     public List getRecordListfromTabPosition() {
         List list = null;
-        String date = null;
         switch (tabPosition) {
             case 1:
-                date = "week";
                 list = myDBHelper.getWeeklyStatistics(null, null);
                 break;
             case 2:
-                date = "month";
                 list = myDBHelper.getMonthlyStatistics(null, null);
                 break;
             case 3:
-                date = "annual";
                 list = myDBHelper.getAnnualStatistics(null, null);
                 break;
             default:
-                date = "day";
                 list = myDBHelper.getRecords();
         }
-        Collections.sort(list, new Comparator<Entities.AbstractRecord>() {
-            @Override
-            public int compare(Entities.AbstractRecord lhs, Entities.AbstractRecord rhs) {
-                return -lhs.date.compareTo(rhs.date);
-            }
-        });
+
+        //it's no need to sort records
+//        Collections.sort(list);
+
         return list;
     }
 
+    private EnumFragment tabPosition2Enum(int tabPosition) {
+        switch (tabPosition) {
+            case 1:
+                return EnumFragment.WeeklyRecordListFragment;
+            case 2:
+                return EnumFragment.MonthlyRecordListFragment;
+            case 3:
+                return EnumFragment.AnnualRecordListFragment;
+            default:
+                return EnumFragment.DayRecordListFragment;
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         tabLayout.addTab(tabLayout.newTab().setText("周"));
         tabLayout.addTab(tabLayout.newTab().setText("月"));
         tabLayout.addTab(tabLayout.newTab().setText("年"));
+        fragmentFactory = new FragmentFactory();
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -81,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
                     details.clearList();
                 }
 
-                details = new RecordsListFragment().getFragmentByIndex(tabPosition);
+                details = fragmentFactory.createRecordListFragment(tabPosition2Enum(tabPosition));
 
                 fragmentTransaction.replace(R.id.list_fragment, details);
                 fragmentTransaction.commit();
@@ -104,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         boolean firstRunFlag = sharedPreferences.getBoolean("firstRun", true);
 
         if (firstRunFlag) {
-            initDB();
+            myDBHelper.initDB();
 
             Toast.makeText(this, "首次运行！", Toast.LENGTH_SHORT).show();
 
@@ -114,32 +123,6 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         } else {
             Toast.makeText(this, "Have a good day！Mr. Shen", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void initDB() {
-        myDBHelper.addAccount("现金账户");
-        myDBHelper.addAccount("招行储蓄卡");
-        myDBHelper.addAccount("招行信用卡");
-        myDBHelper.addAccount("北京银行储蓄卡");
-        myDBHelper.addAccount("工行储蓄卡");
-        myDBHelper.addAccount("支付宝");
-        myDBHelper.addAccount("QQ红包");
-        myDBHelper.addAccount("百度钱包");
-        myDBHelper.addAccount("理财账户");
-        myDBHelper.addAccount("微信");
-
-        myDBHelper.addIncomeAndExpenses("吃饭", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("外卖", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("超市", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("购物", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("房租", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("水电煤、公交、话费等", DBTablesDefinition.EXPENSES);
-        myDBHelper.addIncomeAndExpenses("杂项", DBTablesDefinition.EXPENSES);
-
-        myDBHelper.addIncomeAndExpenses("工资", DBTablesDefinition.INCOME);
-        myDBHelper.addIncomeAndExpenses("利息", DBTablesDefinition.INCOME);
-        myDBHelper.addIncomeAndExpenses("理财收益", DBTablesDefinition.INCOME);
-        myLogger.debug("init database...");
     }
 
     @Override
@@ -188,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 
     @Override
     public void onFragmentInteraction(String id) {
-        List<Entities.AbstractRecord> list = getRecordListfromTabPosition();
+        List<AbstractRecord> list = getRecordListfromTabPosition();
         Toast.makeText(getApplicationContext(),
                 list.get(Integer.valueOf(id)).detail(),
                 Toast.LENGTH_SHORT).show();
@@ -206,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
             details.clearList();
         }
 
-        details = new RecordsListFragment().getFragmentByIndex(tabPosition);
+        details = fragmentFactory.createRecordListFragment(tabPosition2Enum(tabPosition));
 
         fragmentTransaction.replace(R.id.list_fragment, details);
         fragmentTransaction.commit();

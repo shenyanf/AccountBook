@@ -1,13 +1,16 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.R;
+
 import org.apache.log4j.Logger;
 
-public class AboutAuthor extends AppCompatActivity {
-    private Logger myLogger = MyLogger.getMyLogger(AboutAuthor.class.getName());
+public class AboutAuthorActivity extends AppCompatActivity {
+    private Logger myLogger = MyLogger.getMyLogger(AboutAuthorActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +23,7 @@ public class AboutAuthor extends AppCompatActivity {
         stringBuffer.append("Have a good day, guys!\n\n");
         stringBuffer.append("All Rights Reserved!\n\n");
         textView.setText(stringBuffer.toString());
-        
+
         myLogger.debug("display author info...");
     }
 }

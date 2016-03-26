@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 /**
  * Created by heshanshan on 2015/11/22.
@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.shanshan.myaccountbook.R;
 
 
 public class DetailActivity extends AppCompatActivity {

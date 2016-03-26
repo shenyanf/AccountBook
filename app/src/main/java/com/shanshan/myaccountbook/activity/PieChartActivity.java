@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
@@ -222,11 +223,11 @@ public class PieChartActivity extends AppCompatActivity {
             String sql = "select records.id,accounts.name,records.date,SUM(records.amount),incomeOrExpenses.name from records,accounts,incomeOrExpenses where records.accountNameId=accounts.id and records.incomeOrExpense=incomeOrExpenses.id and incomeOrExpenses.flag=" + (isIncome ? "0" : "1") + " group by " + groupBy;
 
             Cursor cursor = db.rawQuery(sql, null);
-            System.out.println("Cursor count is " + cursor.getCount());
+//            System.out.println("Cursor count is " + cursor.getCount());
             BigDecimal bigDecimal = null;
             float amount = 0.0f;
             while (cursor.moveToNext()) {
-                System.out.println(cursor.getInt(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getDouble(3) + " " + cursor.getString(4));
+//                System.out.println(cursor.getInt(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getDouble(3) + " " + cursor.getString(4));
 
                 bigDecimal = new BigDecimal(cursor.getDouble(3));
                 bigDecimal.setScale(2, 4);

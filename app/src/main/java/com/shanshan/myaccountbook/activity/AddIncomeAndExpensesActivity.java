@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,15 +10,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.DBTablesDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpensesEntity;
+import com.shanshan.myaccountbook.entity.IncomeAndExpensesEntity;
 
 import org.apache.log4j.Logger;
 
-public class AddIncomeAndExpenses extends Activity {
-    private Logger myLogger = MyLogger.getMyLogger(AddIncomeAndExpenses.class.getName());
+public class AddIncomeAndExpensesActivity extends Activity {
+    private Logger myLogger = MyLogger.getMyLogger(AddIncomeAndExpensesActivity.class.getName());
 
     private MyDBHelper myDBHelper = null;
     private Spinner spinnerIncomeOrExpenses = null;
@@ -46,12 +48,12 @@ public class AddIncomeAndExpenses extends Activity {
             TextView textView = (TextView) findViewById(R.id.add_income_expenses_name);
             IncomeAndExpensesEntity incomeAndExpenses = myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrExpensesId}).get(0);
 
-            textView.setText(incomeAndExpenses.name);
+            textView.setText(incomeAndExpenses.getName());
             Spinner spinner = (Spinner) findViewById(R.id.spinner_income_expenses_type_income_expenses);
 
             int i = 0;
             for (i = 0; i <= spinnerIncomeAndExpensesArrayAdapter.getCount(); i++) {
-                if (spinnerIncomeAndExpensesArrayAdapter.getItemId(i) == Long.valueOf(incomeAndExpenses.flag)) {
+                if (spinnerIncomeAndExpensesArrayAdapter.getItemId(i) == Long.valueOf(incomeAndExpenses.getFlag())) {
                     break;
                 }
             }
@@ -70,7 +72,7 @@ public class AddIncomeAndExpenses extends Activity {
         }
         String incomeOrexpensesType = (String) spinnerIncomeOrExpenses.getSelectedItem();
 
-        System.out.println("===================" + incomeOrexpensesType + "=================");
+//        System.out.println("===================" + incomeOrexpensesType + "=================");
         myLogger.debug("income or expenses type is " + incomeOrexpensesType);
 
         if (incomeOrExpensesId != null) {

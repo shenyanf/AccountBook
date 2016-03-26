@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,37 +25,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".activity.DetailActivity"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.shanshan.myaccountbook.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingActivity"
+            android:name=".activity.SettingActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/MyDialogTopRight" />
         <activity
-            android:name=".AddRecordActivity"
+            android:name=".activity.AddRecordActivity"
             android:theme="@style/MyDialogStyle" />
         <activity
-            android:name=".AddAccountActivity"
+            android:name=".activity.AddAccountActivity"
             android:label="添加账户" />
         <activity
-            android:name=".ManageAccount"
+            android:name=".activity.ManageAccountActivity"
             android:label="@string/manage_account" />
         <activity
-            android:name=".ManageIncomeAndExpenses"
+            android:name=".activity.ManageIncomeAndExpensesActivity"
             android:label="@string/manage_income_expenses" />
         <activity
-            android:name=".AddIncomeAndExpenses"
+            android:name=".activity.AddIncomeAndExpensesActivity"
             android:label="@string/add_income_expenses" />
         <activity
-            android:name=".AboutAuthor"
+            android:name=".activity.AboutAuthorActivity"
             android:label="@string/about_author"></activity>
         <activity
-            android:name=".PieChartActivity"
+            android:name=".activity.PieChartActivity"
             android:label="@string/title_activity_pie_chart"></activity>
 
     </application>

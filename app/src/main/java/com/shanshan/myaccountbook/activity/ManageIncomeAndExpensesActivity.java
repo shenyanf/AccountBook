@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.button.AddButton;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
-public class ManageIncomeAndExpenses extends AppCompatActivity {
+public class ManageIncomeAndExpensesActivity extends AppCompatActivity {
     private ArrayAdapter adapterIncomeAndExpenses = null;
     private MyDBHelper myDBHelper = null;
 
@@ -44,7 +45,7 @@ public class ManageIncomeAndExpenses extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddIncomeAndExpenses.class);
+                Intent intent = new Intent(getApplicationContext(), AddIncomeAndExpensesActivity.class);
                 startActivity(intent);
             }
         });
@@ -76,7 +77,7 @@ public class ManageIncomeAndExpenses extends AppCompatActivity {
             myDBHelper.deleteIncomeOrExpenses(incomeOrExpensesId);
             onResume();
         } else {
-            Intent intent = new Intent(this, AddIncomeAndExpenses.class);
+            Intent intent = new Intent(this, AddIncomeAndExpensesActivity.class);
             intent.putExtra(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + IncomeOrExpensesDefinition.ID, incomeOrExpensesId);
             startActivity(intent);
         }

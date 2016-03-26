@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="android-logging-log4j-1.0.2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/src/android-logging-log4j-1.0.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.app.Fragment;
 import android.database.Cursor;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
 import org.apache.log4j.Logger;
@@ -22,8 +24,8 @@ import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
-public class Statistics extends AppCompatActivity {
-    private Logger myLogger = MyLogger.getMyLogger(Statistics.class.getName());
+public class StatisticsActivity extends AppCompatActivity {
+    private Logger myLogger = MyLogger.getMyLogger(StatisticsActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,10 @@ public class Statistics extends AppCompatActivity {
 */
 
             Cursor cursor = db.rawQuery("select records.id,accounts.name,records.date,SUM(records.amount),incomeOrExpenses.name from records,accounts,incomeOrExpenses where records.accountNameId=accounts.id and records.incomeOrExpense=incomeOrExpenses.id and incomeOrExpenses.flag=0 group by accounts.name", null);
-            System.out.println("Cursor count is " + cursor.getCount());
+//            System.out.println("Cursor count is " + cursor.getCount());
 
             while (cursor.moveToNext()) {
-                System.out.println(cursor.getInt(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getDouble(3) + " " + cursor.getString(4));
+//                System.out.println(cursor.getInt(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getDouble(3) + " " + cursor.getString(4));
                 SliceValue sliceValue = new SliceValue((float) cursor.getDouble(3), ChartUtils.pickColor());
                 list.add(sliceValue);
             }

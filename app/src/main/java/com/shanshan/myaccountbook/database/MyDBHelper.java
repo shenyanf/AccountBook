@@ -7,21 +7,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 
-import com.shanshan.myaccountbook.MyAccountUtil;
-import com.shanshan.myaccountbook.MyLogger;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AnnualStatisticsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.MonthlyStatisticsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.WeeklyStatisticsDefinition;
-import com.shanshan.myaccountbook.entity.Entities;
-import com.shanshan.myaccountbook.entity.Entities.AccountsEntity;
-import com.shanshan.myaccountbook.entity.Entities.AnnualStatisticsEntity;
-import com.shanshan.myaccountbook.entity.Entities.IncomeAndExpensesEntity;
-import com.shanshan.myaccountbook.entity.Entities.MonthlyStatisticsEntity;
-import com.shanshan.myaccountbook.entity.Entities.RecordsEntity;
-import com.shanshan.myaccountbook.entity.Entities.WeeklyStatisticsEntity;
+import com.shanshan.myaccountbook.entity.AccountsEntity;
+import com.shanshan.myaccountbook.entity.AnnualStatisticsEntity;
+import com.shanshan.myaccountbook.entity.IncomeAndExpensesEntity;
+import com.shanshan.myaccountbook.entity.MonthlyStatisticsEntity;
+import com.shanshan.myaccountbook.entity.DayRecordsEntity;
+import com.shanshan.myaccountbook.entity.WeeklyStatisticsEntity;
+import com.shanshan.myaccountbook.util.MyAccountUtil;
+import com.shanshan.myaccountbook.util.MyLogger;
 
 import org.apache.log4j.Logger;
 
@@ -29,6 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 
 /**
  * Created by heshanshan on 2015/11/15.
@@ -148,6 +148,34 @@ public class MyDBHelper extends SQLiteOpenHelper {
         myLogger.debug("Finish initiating databases...................");
     }
 
+
+    public void initDB() {
+        addAccount("现金账户");
+        addAccount("招行储蓄卡");
+        addAccount("招行信用卡");
+        addAccount("北京银行储蓄卡");
+        addAccount("工行储蓄卡");
+        addAccount("支付宝");
+        addAccount("QQ红包");
+        addAccount("百度钱包");
+        addAccount("理财账户");
+        addAccount("微信");
+
+        addIncomeAndExpenses("吃饭", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("外卖", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("超市", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("购物", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("房租", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("水电煤、公交、话费等", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("杂项", DBTablesDefinition.EXPENSES);
+
+        addIncomeAndExpenses("工资", DBTablesDefinition.INCOME);
+        addIncomeAndExpenses("利息", DBTablesDefinition.INCOME);
+        addIncomeAndExpenses("理财收益", DBTablesDefinition.INCOME);
+        myLogger.debug("init database...");
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_RECORDS);
@@ -167,15 +195,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         final String firstDay = MyAccountUtil.dateToShortString(calendar1.getTime());
 
-        System.out.println("update Weekly Statistics, date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
+//        System.out.println("update Weekly Statistics, date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
         List<WeeklyStatisticsEntity> list = getWeeklyStatistics(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=? and " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "=?",
                 new String[]{firstDay, String.valueOf(incomeOrExpensesType)});
 
         if (list != null && !list.isEmpty() && list.size() == 1) {
             WeeklyStatisticsEntity weeklyStatisticsEntity = (WeeklyStatisticsEntity) list.get(0);
             ContentValues contentValues = new ContentValues();
-            contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT, weeklyStatisticsEntity.amount + amount);
-            db.update(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, contentValues, WeeklyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(weeklyStatisticsEntity.id)});
+            contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT, weeklyStatisticsEntity.getAmount() + amount);
+            db.update(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, contentValues, WeeklyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(weeklyStatisticsEntity.getId())});
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE, firstDay);
@@ -215,7 +243,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         try {
         /* How you want the results sorted in the resulting Cursor*/
             String sortOrder =
-                    WeeklyStatisticsDefinition.ID + " ASC";
+                    WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + " DESC";
 
             Cursor c = db.query(
                     WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME,  // The table to query
@@ -228,14 +256,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-                WeeklyStatisticsEntity dummyItem = new Entities().new WeeklyStatisticsEntity(c.getInt(0),
+                WeeklyStatisticsEntity dummyItem = new WeeklyStatisticsEntity(c.getInt(0),
                         c.getString(c.getColumnIndex(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE)),
                         c.getInt(2),
                         c.getFloat(3));
 
-                System.out.println("date type is " + c.getType(1));
-                System.out.print("WeeklyStatisticsEntity : id" + c.getInt(0) + " date:" + c.getString(c.getColumnIndex(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE))
-                        + " incomeorexpenses:" + c.getInt(2) + " amount:" + c.getFloat(3) + "=======");
+//                System.out.println("date type is " + c.getType(1));
+//                System.out.print("WeeklyStatisticsEntity : id" + c.getInt(0) + " date:" + c.getString(c.getColumnIndex(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE))
+//                        + " incomeorexpenses:" + c.getInt(2) + " amount:" + c.getFloat(3) + "=======");
 
                 WEEKLY_STATISTICS_LIST.add(dummyItem);
             }
@@ -255,15 +283,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         final String firstDay = MyAccountUtil.dateToMonthlyString(calendar1.getTime());
 
-        System.out.println("update Monthly Statistics,date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
+//        System.out.println("update Monthly Statistics,date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
         List<MonthlyStatisticsEntity> list = getMonthlyStatistics(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + "=? and " + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "=?",
                 new String[]{firstDay, String.valueOf(incomeOrExpensesType)});
 
         if (list != null && !list.isEmpty()) {
             MonthlyStatisticsEntity monthlyStatistics = (MonthlyStatisticsEntity) list.get(0);
             ContentValues contentValues = new ContentValues();
-            contentValues.put(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT, monthlyStatistics.amount + amount);
-            db.update(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, contentValues, MonthlyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(monthlyStatistics.id)});
+            contentValues.put(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT, monthlyStatistics.getAmount() + amount);
+            db.update(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, contentValues, MonthlyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(monthlyStatistics.getId())});
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT, amount);
@@ -303,7 +331,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         try {
         /* How you want the results sorted in the resulting Cursor*/
             String sortOrder =
-                    MonthlyStatisticsDefinition.ID + " ASC";
+                    MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + " DESC";
 
             Cursor c = db.query(
                     MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME,  // The table to query
@@ -317,9 +345,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
 
             while (c.moveToNext()) {
-                MonthlyStatisticsEntity dummyItem = new Entities().new MonthlyStatisticsEntity(c.getInt(0), c.getString(1), c.getInt(2), c.getFloat(3));
+                MonthlyStatisticsEntity dummyItem = new MonthlyStatisticsEntity(c.getInt(0), c.getString(1), c.getInt(2), c.getFloat(3));
 
-                System.out.print("====================" + c.getInt(0) + c.getString(1) + c.getInt(2) + c.getFloat(3) + "=================");
+//                System.out.print("====================" + c.getInt(0) + c.getString(1) + c.getInt(2) + c.getFloat(3) + "=================");
 
                 MONTHLY_STATISTICS_LIST.add(dummyItem);
             }
@@ -340,15 +368,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
         final String firstDay = MyAccountUtil.dateToYearString(calendar1.getTime());
 
 
-        System.out.println("update Annual Statistics, date is " + firstDay + " incomeOrExpensesType is " + incomeOrExpensesType);
+//        System.out.println("update Annual Statistics, date is " + firstDay + " incomeOrExpensesType is " + incomeOrExpensesType);
         List<AnnualStatisticsEntity> list = getAnnualStatistics(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + "=? and " + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "=?",
                 new String[]{firstDay, String.valueOf(incomeOrExpensesType)});
 
         if (list != null && !list.isEmpty()) {
             AnnualStatisticsEntity annualStatistics = (AnnualStatisticsEntity) list.get(0);
             ContentValues contentValues = new ContentValues();
-            contentValues.put(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT, annualStatistics.amount + amount);
-            db.update(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, contentValues, AnnualStatisticsDefinition.ID + "=?", new String[]{String.valueOf(annualStatistics.id)});
+            contentValues.put(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT, annualStatistics.getAmount() + amount);
+            db.update(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, contentValues, AnnualStatisticsDefinition.ID + "=?", new String[]{String.valueOf(annualStatistics.getId())});
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT, amount);
@@ -387,7 +415,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         try {
         /* How you want the results sorted in the resulting Cursor*/
             String sortOrder =
-                    AnnualStatisticsDefinition.ID + " ASC";
+                    AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + " DESC";
 
             Cursor c = db.query(
                     AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME,  // The table to query
@@ -400,9 +428,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-                AnnualStatisticsEntity dummyItem = new Entities().new AnnualStatisticsEntity(c.getInt(0), c.getString(1), c.getInt(2), c.getFloat(3));
+                AnnualStatisticsEntity dummyItem = new AnnualStatisticsEntity(c.getInt(0), c.getString(1), c.getInt(2), c.getFloat(3));
 
-                System.out.print("====================" + c.getInt(0) + c.getString(1) + c.getInt(2) + c.getFloat(3) + "=================");
+//                System.out.print("====================" + c.getInt(0) + c.getString(1) + c.getInt(2) + c.getFloat(3) + "=================");
 
                 ANNUAL_STATISTICS_LIST.add(dummyItem);
             }
@@ -420,7 +448,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         try {
             if (list != null && !list.isEmpty() && list.size() == 1) {
                 AccountsEntity account = (AccountsEntity) list.get(0);
-                updateAccount(String.valueOf(account.id), accountName, AccountsDefinition.ACCOUNT_AVAILABLE);
+                updateAccount(String.valueOf(account.getId()), accountName, AccountsDefinition.ACCOUNT_AVAILABLE);
             } else {
                 ContentValues values = new ContentValues();
                 values.put(AccountsDefinition.COLUMN_ACCOUNT_NAME, accountName);
@@ -465,8 +493,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-                System.out.println("get account" + c.getString(1));
-                AccountsEntity dummyItem = new Entities().new AccountsEntity(c.getInt(0), c.getString(1), c.getInt(2));
+//                System.out.println("get account" + c.getString(1));
+                AccountsEntity dummyItem = new AccountsEntity(c.getInt(0), c.getString(1), c.getInt(2));
                 ACCOUNT_LIST.add(dummyItem);
             }
         } finally {
@@ -493,13 +521,46 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<RecordsEntity> getRecords() {
+    public int getDayRecordsCount() {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        String sql = "select count(*) from " + RecordsDefinition.TABLE_RECORDS_NAME;
+        Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        int length = c.getInt(0);
+        c.close();
+        return length;
+    }
+
+    public ArrayList<DayRecordsEntity> getDayRecordsAllItems(int currentPage, int pageSize) {
+        int firstResult = (currentPage - 1) * pageSize;
+        int maxResult = currentPage * pageSize;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "select " + RecordsDefinition.ID + "," + RecordsDefinition.COLUMN_RECORDS_ACCOUNT_NAME_ID + "," + RecordsDefinition.COLUMN_RECORDS_DATE + "," +
+                RecordsDefinition.COLUMN_RECORDS_FLAG_OF_INCOME_OR_EXPENSE + "," + RecordsDefinition.COLUMN_RECORDS_AMOUNT + "," +
+                RecordsDefinition.COLUMN_RECORDS_REMARKS + " from " + RecordsDefinition.TABLE_RECORDS_NAME + " order by " + RecordsDefinition.COLUMN_RECORDS_DATE + " desc limit ?,?";
+        Cursor mCursor = db.rawQuery(
+                sql,
+                new String[]{String.valueOf(firstResult),
+                        String.valueOf(maxResult)});
+        ArrayList<DayRecordsEntity> items = new ArrayList<DayRecordsEntity>();
+        int columnCount = mCursor.getColumnCount();
+        while (mCursor.moveToNext()) {
+            DayRecordsEntity dummyItem = new DayRecordsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getString(2), mCursor.getInt(3), mCursor.getFloat(4), mCursor.getString(5));
+            items.add(dummyItem);
+
+        }
+        //不要关闭数据库
+        return items;
+    }
+
+
+    public List<DayRecordsEntity> getRecords() {
         return getRecords(null, null);
     }
 
-    public List<RecordsEntity> getRecords(String whereColumns, String[] whereValues) {
+    public List<DayRecordsEntity> getRecords(String whereColumns, String[] whereValues) {
         /* A map of records items, by ID.*/
-        List<RecordsEntity> RECORDS_LIST = new ArrayList<>();
+        List<DayRecordsEntity> RECORDS_LIST = new ArrayList<>();
 
 
         SQLiteDatabase db = this.getSQLiteDatabase();
@@ -517,7 +578,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         /* How you want the results sorted in the resulting Cursor*/
         String sortOrder =
-                RecordsDefinition.ID + " ASC";
+                RecordsDefinition.COLUMN_RECORDS_DATE + " DESC";
         try {
             Cursor c = db.query(
                     RecordsDefinition.TABLE_RECORDS_NAME,  // The table to query
@@ -530,7 +591,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-                RecordsEntity dummyItem = new Entities().new RecordsEntity(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getFloat(4), c.getString(5));
+                DayRecordsEntity dummyItem = new DayRecordsEntity(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getFloat(4), c.getString(5));
                 RECORDS_LIST.add(dummyItem);
             }
         } finally {
@@ -612,8 +673,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-                System.out.println("get income or expenses id is:" + c.getInt(0) + " , incomeorexpenses is " + c.getString(1));
-                IncomeAndExpensesEntity dummyItem = new Entities().new IncomeAndExpensesEntity(c.getInt(0), c.getString(1), c.getInt(2));
+//                System.out.println("get income or expenses id is:" + c.getInt(0) + " , incomeorexpenses is " + c.getString(1));
+                IncomeAndExpensesEntity dummyItem = new IncomeAndExpensesEntity(c.getInt(0), c.getString(1), c.getInt(2));
                 INCOME_AND_EXPENSES_LIST.add(dummyItem);
             }
         } finally {

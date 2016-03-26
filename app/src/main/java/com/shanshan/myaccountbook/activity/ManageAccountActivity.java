@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.button.AddButton;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 
-public class ManageAccount extends AppCompatActivity {
+public class ManageAccountActivity extends AppCompatActivity {
     private ArrayAdapter adapterAccount = null;
     private MyDBHelper myDBHelper = null;
     private ListView accountListView = null;

@@ -56,6 +56,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcc345be-62aa-4024-ac61-b566161e4e89" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/IncomeAndExpensesEntity.java" />
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\android_logging_log4j_1_0_2.xml" afterPath="" />
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\appcompat_v7_23_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\design_23_1_0.xml" afterPath="" />
@@ -64,20 +65,33 @@
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\recyclerview_v7_23_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\support_annotations_23_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\.idea\libraries\support_v4_23_1_0.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddAccountActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddAccountActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddIncomeAndExpenses.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddIncomeAndExpenses.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/DBTablesDefinition.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/DBTablesDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Entities.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Entities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageAccount.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageIncomeAndExpenses.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageIncomeAndExpenses.java" />
+      <change type="DELETED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\entity\Entities.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/PieChartActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/PieChartActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_about_author.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_about_author.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_account.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_account.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_income_and_expenses.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_income_and_expenses.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_income_and_expenses.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_income_and_expenses.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pie_chart.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pie_chart.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/pie_chart.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/pie_chart.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\AboutAuthor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AboutAuthorActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\AddAccountActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddAccountActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\AddIncomeAndExpenses.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddIncomeAndExpensesActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\AddRecordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddRecordActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\DetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/DetailActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/MainActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\ManageAccount.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\ManageIncomeAndExpenses.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageIncomeAndExpensesActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\MyAccountUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/util/MyAccountUtil.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\MyLogger.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/util/MyLogger.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\PieChartActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/PieChartActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\RecordsListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/RecordsListFragment.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\SettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/SettingActivity.java" />
+      <change type="MOVED" beforePath="F:\AndroidStudioWorkspace\MyAccountBook\app\src\main\java\com\shanshan\myaccountbook\Statistics.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/StatisticsActivity.java" />
     </list>
     <ignored path="My Account Book.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,116 +118,14 @@
     <favorites_list name="My Account Book" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="RecordsListFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8135593">
-              <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddRecordActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84408605">
-              <caret line="279" column="45" selection-start-line="279" selection-start-column="45" selection-end-line="279" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1932#2166#0" expanded="true" />
-                <element signature="e#2165#2166#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DetailActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entities.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Entities.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
-              <folding>
-                <element signature="e#2401#2402#0" expanded="true" />
-                <element signature="e#2458#2459#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.142857">
-              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -1355,7 +1267,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="F:\AndroidStudioWorkspace\MyAccountBook" value="4352442767588" />
+        <entry key="F:\AndroidStudioWorkspace\MyAccountBook" value="4355402054863" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1568,57 +1480,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_about_author.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_account.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_income_and_expenses.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_record.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_account.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_income_and_expenses.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_button.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_grid.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/button/AddButton.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/data/res/layout/simple_expandable_list_item_1.xml" />
-        <option value="$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/data/res/layout/simple_list_item_1.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/Logger.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AboutAuthor.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MyAccountUtil.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyContract.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/TablesInfo.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MyLogger.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Statistics.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/statistics.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/ids.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/pie_chart.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/SettingActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/Statistics.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_statistics.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_pie_chart.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_pie_chart.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/pie_chart.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/DBTablesDefinition.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyDBHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/PieChartActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/datetimepicker/DateTimePicker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/date_time_picker.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddAccountActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddIncomeAndExpenses.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageAccount.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageIncomeAndExpenses.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/PieChartActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/datetimepicker/DateTimePicker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/date_time_picker.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/Statistics.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/SettingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AboutAuthor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AboutAuthorActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/SettingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/EnumFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/FragmentFactory.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_about_author.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_account.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_income_and_expenses.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_income_and_expenses.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/aa.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/ddd.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/ccc.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/eee.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/fff.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Entities.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/aaa.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddAccountActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/AbstractRecord.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/AnnualStatisticsEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/MonthlyStatisticsEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/WeeklyStatisticsEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/RecordsEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/AnnualRecordListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/MonthlyRecordListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/WeeklyRecordListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddIncomeAndExpensesActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddRecordActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/PieChartActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/StatisticsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyDBHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/DayRecordListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/RecordsListFragment.java" />
       </list>
     </option>
   </component>
@@ -1683,8 +1595,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1739,10 +1652,53 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My Account Book" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myaccountbook" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="My Account Book" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myaccountbook" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1754,7 +1710,7 @@
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="android.R.layout.simple_spinner_item&#9;PSI&#9;JAVA://android.support.design.R.layout#support_simple_spinner_dropdown_item&#10;adapter &#9;PSI&#9;JAVA://com.shanshan.myaccountbook.RecordsListFragment#mAdapter&#10;ids&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/values/ids.xml&#10;stri&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/values/strings.xml&#10;d&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java&#10;main&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java&#10;det&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java&#10;menu&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/menu/menu_main.xml&#10;ids.xml&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="getRecords&#9;PSI&#9;JAVA://com.shanshan.myaccountbook.database.MyDBHelper#getRecords&#10;android.R.layout.simple_spinner_item&#9;PSI&#9;JAVA://android.support.design.R.layout#support_simple_spinner_dropdown_item&#10;adapter &#9;PSI&#9;JAVA://com.shanshan.myaccountbook.RecordsListFragment#mAdapter&#10;ids&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/values/ids.xml&#10;stri&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/values/strings.xml&#10;d&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java&#10;main&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java&#10;det&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java&#10;menu&#9;FILE&#9;file://F:/AndroidStudioWorkspace/MyAccountBook/app/src/main/res/menu/menu_main.xml&#10;ids.xml&#9;null&#9;null" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
@@ -1778,11 +1734,11 @@
     <key name="android.template.packageName">
       <recent name="com.shanshan.myaccountbook" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.shanshan.myaccountbook" />
-    </key>
     <key name="android.template.parentActivityClass">
       <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.shanshan.myaccountbook" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
@@ -1975,7 +1931,7 @@
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="Please select a project..." />
       <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="com.shanshan.myaccountbook.MainActivity" />
+      <option name="ACTIVITY_CLASS" value="com.shanshan.myaccountbook.activity.MainActivity" />
       <method />
     </configuration>
     <list size="1">
@@ -2017,8 +1973,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2026,7 +1982,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44804087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.560477" sideWeight="0.48335856" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2036,7 +1992,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5128593" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.48411497" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48211244" sideWeight="0.48411497" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2079,86 +2035,105 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_pie_chart.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_statistics.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="34" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.0/support-v4-23.1.0-sources.jar!/android/support/v4/app/FragmentPagerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_button.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="41" selection-start-line="96" selection-start-column="41" selection-end-line="96" selection-end-column="41" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/date_time_picker.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_item_grid.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pie_chart.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.5">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/pie_chart.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_sync_black_24dp.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v21/ic_notifications_black_24dp.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_notifications_black_24dp.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_info_black_24dp.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_action_search.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/title_function_bg.9.png">
-      <provider editor-type-id="images">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="ninepatcheditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v21/ic_sync_black_24dp.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="-17.857143">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_item_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.53571427">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding />
+        </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2166,53 +2141,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_income_and_expenses.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manage_income_and_expenses.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="53" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="53" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/data/res/values/ids.xml">
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="43" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="36" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7860262">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65502185">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/IncomeAndExpensesEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/java/util/List.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.285714">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddAccountActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3309091">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_55/jre/lib/rt.jar!/com/sun/xml/internal/ws/policy/jaxws/PolicyWSDLParserExtension.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3509434">
+          <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/AbstractRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/AccountsEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/MonthlyStatisticsEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#785#786#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/WeeklyStatisticsEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/DayRecordsEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2723#2724#0" expanded="true" />
+            <element signature="e#2772#2773#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/AnnualStatisticsEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/FragmentFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2220,303 +2315,199 @@
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
-          <caret line="353" column="13" selection-start-line="353" selection-start-column="13" selection-end-line="353" selection-end-column="13" />
-          <folding />
+          <caret line="786" column="26" selection-start-line="786" selection-start-column="26" selection-end-line="786" selection-end-column="26" />
+          <folding>
+            <element signature="e#30099#30100#0" expanded="true" />
+            <element signature="e#30164#30165#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_item_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/java/math/BigDecimal.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0">
+          <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/refs.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1860" column="25" selection-start-line="1860" selection-start-column="25" selection-end-line="1860" selection-end-column="25" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/content/Intent.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/ids.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5417" column="24" selection-start-line="5417" selection-start-column="24" selection-end-line="5417" selection-end-column="24" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/widget/AdapterView.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/widget/ArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13978495">
-          <caret line="412" column="7" selection-start-line="412" selection-start-column="7" selection-end-line="412" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8356164">
-          <caret line="356" column="20" selection-start-line="356" selection-start-column="20" selection-end-line="356" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="2268" column="15" selection-start-line="2268" selection-start-column="15" selection-end-line="2268" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/button/AddButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10752688">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="0.91935486">
+          <caret line="380" column="9" selection-start-line="380" selection-start-column="9" selection-end-line="380" selection-end-column="9" />
+          <folding>
+            <element signature="e#11550#11551#0" expanded="true" />
+            <element signature="e#11588#11589#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/DBTablesDefinition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02688172">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="10" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddIncomeAndExpenses.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/AnnualRecordListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.39784947">
-          <caret line="46" column="114" selection-start-line="46" selection-start-column="114" selection-end-line="46" selection-end-column="114" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageAccount.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/MonthlyRecordListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7580645">
-          <caret line="91" column="147" selection-start-line="91" selection-start-column="147" selection-end-line="91" selection-end-column="147" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/ManageIncomeAndExpenses.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/WeeklyRecordListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4623656">
-          <caret line="79" column="102" selection-start-line="79" selection-start-column="102" selection-end-line="79" selection-end-column="102" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/PieChartActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddIncomeAndExpensesActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="236" column="75" selection-start-line="236" selection-start-column="75" selection-end-line="236" selection-end-column="75" />
+          <caret line="75" column="65" selection-start-line="75" selection-start-column="65" selection-end-line="75" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/SettingActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/DetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.19354838">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/Statistics.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.40860215">
+          <caret line="200" column="8" selection-start-line="200" selection-start-column="8" selection-end-line="200" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageIncomeAndExpensesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32795697">
+          <caret line="75" column="77" selection-start-line="75" selection-start-column="77" selection-end-line="75" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MyLogger.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.3548387">
+          <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MyAccountUtil.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/PieChartActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.17562725">
+          <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AboutAuthor.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/StatisticsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10752688">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.20250896">
+          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/database/MyDBHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0508475">
-          <caret line="633" column="7" selection-start-line="633" selection-start-column="6" selection-end-line="633" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.20250896">
+          <caret line="198" column="57" selection-start-line="198" selection-start-column="57" selection-end-line="198" selection-end-column="57" />
           <folding>
-            <element signature="e#10963#10971#0" expanded="true" />
-            <element signature="e#15704#15712#0" expanded="true" />
-            <element signature="e#20059#20067#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#11903#11911#0" expanded="true" />
+            <element signature="e#16675#16683#0" expanded="true" />
+            <element signature="e#21058#21066#0" expanded="true" />
+            <element signature="e#27412#27430#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.142857">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_record.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.5">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddAccountActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/DayRecordListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/fragment/RecordsListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/date_time_picker.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3409091">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1894" column="27" selection-start-line="1894" selection-start-column="27" selection-end-line="1894" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19892474">
-          <caret line="320" column="6" selection-start-line="320" selection-start-column="6" selection-end-line="320" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/entity/Entities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
-          <folding>
-            <element signature="e#2401#2402#0" expanded="true" />
-            <element signature="e#2458#2459#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/DetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/RecordsListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8135593">
-          <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
+          <caret line="149" column="13" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddRecordActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1932#2166#0" expanded="true" />
-            <element signature="e#2165#2166#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/AddRecordActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84408605">
-          <caret line="279" column="45" selection-start-line="279" selection-start-column="45" selection-end-line="279" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.36379927">
+          <caret line="278" column="43" selection-start-line="278" selection-start-column="43" selection-end-line="278" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

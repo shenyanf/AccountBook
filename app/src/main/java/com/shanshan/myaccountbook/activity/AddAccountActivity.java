@@ -1,4 +1,4 @@
-package com.shanshan.myaccountbook;
+package com.shanshan.myaccountbook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.Entities.AccountsEntity;
+import com.shanshan.myaccountbook.entity.AccountsEntity;
 
 import org.apache.log4j.Logger;
 
@@ -33,7 +35,7 @@ public class AddAccountActivity extends AppCompatActivity {
             TextView textView = (TextView) findViewById(R.id.add_account_name);
             AccountsEntity accounts = myDBHelper.getAccount(AccountsDefinition.ID + "=?", new String[]{accountId}).get(0);
 
-            textView.setText(accounts.name);
+            textView.setText(accounts.getName());
 
         }
     }
