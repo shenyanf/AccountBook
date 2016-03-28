@@ -1,23 +1,24 @@
 package com.shanshan.myaccountbook.fragment;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.MyDBHelper;
-import com.shanshan.myaccountbook.entity.DayRecordsEntity;
+import com.shanshan.myaccountbook.entity.AbstractRecord;
 
 import java.util.List;
 
@@ -30,14 +31,12 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public abstract class RecordsListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public abstract class RecordsListFragment extends Fragment implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener {
 
-    protected List list = null;
-    protected List<DayRecordsEntity> recordList = null;
+    protected List recordList = null;
     protected MyDBHelper myDBHelper;
 
     protected OnFragmentInteractionListener mListener = null;
-    protected String date = null;
 
     /**
      * The fragment's ListView/GridView.
@@ -50,6 +49,27 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
      */
     protected ArrayAdapter mAdapter = null;
 
+    protected int currentPage = 1; //默认在第一页
+    protected static final int lineSize = 10;    //每次显示数
+    protected int allRecorders = 0;  //全部记录数
+    protected int pageSize = 1;  //默认共一页
+    protected int lastItem; //最后一行的行号
+    protected int alreadyLoadCount = 0; //已经加载了多少记录
+
+    protected LinearLayout loadLayout;
+    protected TextView loadInfo;
+
+    /**
+     * 初始化变量
+     */
+    public abstract void init();
+
+    /**
+     * 获得下一页的数据
+     *
+     * @return
+     */
+    public abstract List<AbstractRecord> getNextPageRecords();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,8 +85,42 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
 
     }
 
-    public abstract View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                      Bundle savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = null;
+//            System.out.println("create fragment view date is " + date);
+        view = inflater.inflate(R.layout.fragment_item, container, false);
+        mListView = (ListView) view.findViewById(android.R.id.list);
+
+        //创建一个角标线性布局用来显示"正在加载"
+        loadLayout = new LinearLayout(getActivity());
+        loadLayout.setGravity(Gravity.CENTER);
+        //定义一个文本显示“正在加载”
+        loadInfo = new TextView(getActivity());
+        loadInfo.setText("正在加载...");
+        loadInfo.setGravity(Gravity.CENTER);
+        //增加组件
+        loadLayout.addView(loadInfo, new ActionBar.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        //增加到listView底部
+        mListView.addFooterView(loadLayout);
+
+
+        initAndLoadFirstPageData();
+        mListView.setOnScrollListener(this);
+
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                ((TextView) parent.getChildAt(0)).setTextSize(20, TypedValue.COMPLEX_UNIT_SP);
+            }
+        });
+        // Set OnItemClickListener so we can be notified on item clicks
+        mListView.setOnItemClickListener(this);
+        return view;
+    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -96,18 +150,6 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
         }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
-
-        if (emptyView instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -129,14 +171,9 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
         return mAdapter;
     }
 
-    public void setdate(String date) {
-        this.date = date;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
+    /**
+     * 清空数据
+     */
     public void clearList() {
         if (recordList != null) {
             int size = recordList.size();
@@ -147,25 +184,79 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
         }
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == android.R.id.list) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            menu.setHeaderTitle("记录管理");
-            String[] menuItems = getResources().getStringArray(R.array.records_menu);
-            for (int i = 0; i < menuItems.length; i++) {
-                menu.add(Menu.NONE, i, i, menuItems[i]);
-            }
+
+    /**
+     * 追加数据
+     */
+    public void appendDate() {
+        List<AbstractRecord> additems = getNextPageRecords();
+
+        alreadyLoadCount = mAdapter.getCount() + additems.size();
+
+        //判断，如果到了最末尾则去掉“正在加载”
+        if (allRecorders == alreadyLoadCount) {
+            mListView.removeFooterView(loadLayout);
         }
+
+//        System.out.println("追加数据...");
+
+        recordList.addAll(additems);
+        //通知记录改变
+        mAdapter.notifyDataSetChanged();
     }
+
+    /**
+     * 判断是否到最后
+     *
+     * @param view
+     * @param firstVisible
+     * @param visibleCount
+     * @param totalCount
+     */
+    @Override
+    public void onScroll(AbsListView view, int firstVisible, int visibleCount,
+                         int totalCount) {
+        lastItem = firstVisible + visibleCount - 1; //统计是否到最后
+
+    }
+
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+    public void onScrollStateChanged(AbsListView view, int scorllState) {
+//        System.out.println("进入滚动界面了");
 
-        DayRecordsEntity record = recordList.get((int) info.id);
-//        System.out.println("===++++++++++++" + record + "++++++++++++++========");
+//        System.out.println("lastItem" + lastItem + " alreadyLoadCount" + alreadyLoadCount);
+//        System.out.println("currentPage" + currentPage + "pageSize" + pageSize);
+//        System.out.println("scorllState" + scorllState + " " + OnScrollListener.SCROLL_STATE_IDLE);
 
-        return true;
+        //是否到最底部并且数据没读完
+        if (lastItem == alreadyLoadCount
+                && currentPage < pageSize    //不再滚动
+                && scorllState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+            currentPage++;
+            //设置显示位置
+            mListView.setSelection(lastItem);
+            //增加数据
+            appendDate();
+        }
+
     }
+
+    /**
+     * 初始化变量，并读取第一页显示的数据
+     */
+    public void initAndLoadFirstPageData() {
+        init();
+        alreadyLoadCount = recordList.size();
+
+        //判断，如果到了最末尾则去掉“正在加载”
+        if (allRecorders <= lineSize) {
+            mListView.removeFooterView(loadLayout);
+        }
+
+        mAdapter = new ArrayAdapter(getActivity(),
+                R.layout.list_item_layout, android.R.id.text1, recordList);
+        mListView.setAdapter(mAdapter);
+    }
+
 }

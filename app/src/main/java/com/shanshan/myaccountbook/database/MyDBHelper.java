@@ -15,9 +15,9 @@ import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.WeeklyStatisticsDefinition;
 import com.shanshan.myaccountbook.entity.AccountsEntity;
 import com.shanshan.myaccountbook.entity.AnnualStatisticsEntity;
+import com.shanshan.myaccountbook.entity.DayRecordsEntity;
 import com.shanshan.myaccountbook.entity.IncomeAndExpensesEntity;
 import com.shanshan.myaccountbook.entity.MonthlyStatisticsEntity;
-import com.shanshan.myaccountbook.entity.DayRecordsEntity;
 import com.shanshan.myaccountbook.entity.WeeklyStatisticsEntity;
 import com.shanshan.myaccountbook.util.MyAccountUtil;
 import com.shanshan.myaccountbook.util.MyLogger;
@@ -184,6 +184,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void deleteWeeklyStatistic(String id) {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        try {
+
+            db.delete(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, WeeklyStatisticsDefinition.ID + "=? ", new String[]{id});
+        } finally {
+        }
+    }
 
     public void updateWeeklyStatistics(String dateStr, float amount, int incomeOrExpensesType) {
         SQLiteDatabase db = this.getSQLiteDatabase();
@@ -195,15 +203,19 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         final String firstDay = MyAccountUtil.dateToShortString(calendar1.getTime());
 
+        System.out.println("update weeklyStatistics amount is " + amount);
+
+
 //        System.out.println("update Weekly Statistics, date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
         List<WeeklyStatisticsEntity> list = getWeeklyStatistics(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=? and " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "=?",
                 new String[]{firstDay, String.valueOf(incomeOrExpensesType)});
 
+        //如果已经有记录，就update，否则就insert
         if (list != null && !list.isEmpty() && list.size() == 1) {
             WeeklyStatisticsEntity weeklyStatisticsEntity = (WeeklyStatisticsEntity) list.get(0);
             ContentValues contentValues = new ContentValues();
             contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT, weeklyStatisticsEntity.getAmount() + amount);
-            db.update(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, contentValues, WeeklyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(weeklyStatisticsEntity.getId())});
+            db.updateWithOnConflict(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, contentValues, WeeklyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(weeklyStatisticsEntity.getId())}, SQLiteDatabase.CONFLICT_IGNORE);
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE, firstDay);
@@ -211,6 +223,55 @@ public class MyDBHelper extends SQLiteOpenHelper {
             contentValues.put(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE, incomeOrExpensesType);
             db.insertWithOnConflict(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
         }
+
+        //如果更新后amount为0，则删除该条记录
+        List<WeeklyStatisticsEntity> list1 = getWeeklyStatistics(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=?", new String[]{firstDay});
+        if (list1 != null && !list.isEmpty() && list.size() == 1) {
+            WeeklyStatisticsEntity weeklyStatisticsEntity1 = list1.get(0);
+//            System.out.println("weeklyStatistics amount is :" + weeklyStatisticsEntity1.getAmount());
+
+            if (Float.compare(weeklyStatisticsEntity1.getAmount(), 0.00f) == 0) {
+                db.delete(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=?", new String[]{firstDay});
+            }
+        }
+
+    }
+
+    public int getWeeklyRecordsCount() {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        String sql = "select count(*) from " + WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME;// + " where " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT + ">0";
+        Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        int length = c.getInt(0);
+        c.close();
+        return length;
+    }
+
+    public ArrayList<WeeklyStatisticsEntity> getCurrentPageWeeklyRecords(int currentPage, int pageSize) {
+        int firstResult = (currentPage - 1) * pageSize;
+        int maxResult = currentPage * pageSize;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "select " + WeeklyStatisticsDefinition.ID + "," + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "," +
+                WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT +
+                " from " + WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME
+                //+ " where " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT + ">0 "
+                + " order by " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE +
+                " desc limit ?,?";
+        Cursor mCursor = db.rawQuery(
+                sql,
+                new String[]{String.valueOf(firstResult),
+                        String.valueOf(maxResult)});
+        ArrayList<WeeklyStatisticsEntity> items = new ArrayList<WeeklyStatisticsEntity>();
+        int columnCount = mCursor.getColumnCount();
+        while (mCursor.moveToNext()) {
+            WeeklyStatisticsEntity dummyItem = new WeeklyStatisticsEntity(mCursor.getInt(0),
+                    mCursor.getString(mCursor.getColumnIndex(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE)),
+                    mCursor.getInt(2), mCursor.getFloat(3));
+            items.add(dummyItem);
+
+        }
+        //不要关闭数据库
+        return items;
     }
 
     public List<WeeklyStatisticsEntity> getWeeklyStatistics(String whereColumns, String[] whereValues) {
@@ -225,10 +286,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT
         };
 
-        whereColumns = WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT + ">? " + (whereColumns == null ? "" : " and " + whereColumns);
+        whereColumns = (whereColumns == null) ? "" : " 1=1 and " + whereColumns;
 
         List<String> list = new ArrayList<String>();
-        list.add(0, "0");
 
         if (whereValues != null) {
             for (String s : whereValues) {
@@ -275,6 +335,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public void deleteMonthlyStatistic(String id) {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        try {
+
+            db.delete(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, MonthlyStatisticsDefinition.ID + "=? ", new String[]{id});
+        } finally {
+        }
+    }
+
     public void updateMonthlyStatistics(String dateStr, float amount, int incomeOrExpensesType) {
         SQLiteDatabase db = this.getSQLiteDatabase();
         Calendar calendar1 = Calendar.getInstance();
@@ -292,6 +361,17 @@ public class MyDBHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT, monthlyStatistics.getAmount() + amount);
             db.update(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, contentValues, MonthlyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(monthlyStatistics.getId())});
+
+            //如果更新后amount为0，则删除该条记录
+            List<MonthlyStatisticsEntity> list1 = getMonthlyStatistics(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + "=?", new String[]{firstDay});
+            if (list1 != null && !list.isEmpty() && list.size() == 1) {
+                MonthlyStatisticsEntity monthlyStatistics1 = (MonthlyStatisticsEntity) list1.get(0);
+
+                if (Float.compare(monthlyStatistics1.getAmount(), 0.00f) == 0) {
+                    db.delete(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, MonthlyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(monthlyStatistics1.getId())});
+                }
+            }
+
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT, amount);
@@ -300,6 +380,39 @@ public class MyDBHelper extends SQLiteOpenHelper {
             db.insertWithOnConflict(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
         }
     }
+
+    public int getMonthlyRecordsCount() {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        String sql = "select count(*) from " + MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME;
+        Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        int length = c.getInt(0);
+        c.close();
+        return length;
+    }
+
+    public ArrayList<MonthlyStatisticsEntity> getCurrentPageMonthlyRecords(int currentPage, int pageSize) {
+        int firstResult = (currentPage - 1) * pageSize;
+        int maxResult = currentPage * pageSize;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "select " + MonthlyStatisticsDefinition.ID + "," + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + "," +
+                MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT +
+                " from " + MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME + " order by " + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + " desc limit ?,?";
+        Cursor mCursor = db.rawQuery(
+                sql,
+                new String[]{String.valueOf(firstResult),
+                        String.valueOf(maxResult)});
+        ArrayList<MonthlyStatisticsEntity> items = new ArrayList<MonthlyStatisticsEntity>();
+        int columnCount = mCursor.getColumnCount();
+        while (mCursor.moveToNext()) {
+            MonthlyStatisticsEntity dummyItem = new MonthlyStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
+            items.add(dummyItem);
+
+        }
+        //不要关闭数据库
+        return items;
+    }
+
 
     public List<MonthlyStatisticsEntity> getMonthlyStatistics(String whereColumns, String[] whereValues) {
         /* A map of records items, by ID.*/
@@ -313,10 +426,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT
         };
 
-        whereColumns = MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT + ">? " + (whereColumns == null ? "" : " and " + whereColumns);
+        whereColumns = (whereColumns == null ? "" : " 1=1 and " + whereColumns);
 
         List<String> list = new ArrayList<String>();
-        list.add(0, "0");
 
         if (whereValues != null) {
             for (String s : whereValues) {
@@ -358,6 +470,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return MONTHLY_STATISTICS_LIST;
     }
 
+    public void deleteAnnualStatistic(String id) {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        try {
+
+            db.delete(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, AnnualStatisticsDefinition.ID + "=? ", new String[]{id});
+        } finally {
+        }
+    }
 
     public void updateAnnualStatistics(String dateStr, float amount, int incomeOrExpensesType) {
         SQLiteDatabase db = this.getSQLiteDatabase();
@@ -377,6 +497,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT, annualStatistics.getAmount() + amount);
             db.update(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, contentValues, AnnualStatisticsDefinition.ID + "=?", new String[]{String.valueOf(annualStatistics.getId())});
+
+            //如果更新后amount为0，则删除该条记录
+            List<AnnualStatisticsEntity> list1 = getAnnualStatistics(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + "=?", new String[]{firstDay});
+            if (list1 != null && !list.isEmpty() && list.size() == 1) {
+                AnnualStatisticsEntity annualStatisticsEntity1 = (AnnualStatisticsEntity) list1.get(0);
+                if (Float.compare(annualStatisticsEntity1.getAmount(), 0.00f) == 0) {
+                    db.delete(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, AnnualStatisticsDefinition.ID + "=?", new String[]{String.valueOf(annualStatisticsEntity1.getId())});
+                }
+            }
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT, amount);
@@ -398,10 +527,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT
         };
 
-        whereColumns = AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT + ">? " + (whereColumns == null ? "" : " and " + whereColumns);
+        whereColumns = (whereColumns == null ? "" : " 1=1 and " + whereColumns);
 
         List<String> list = new ArrayList<String>();
-        list.add(0, "0");
 
         if (whereValues != null) {
             for (String s : whereValues) {
@@ -440,6 +568,39 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         return ANNUAL_STATISTICS_LIST;
     }
+
+    public int getAnnualRecordsCount() {
+        SQLiteDatabase db = this.getSQLiteDatabase();
+        String sql = "select count(*) from " + AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME;
+        Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        int length = c.getInt(0);
+        c.close();
+        return length;
+    }
+
+    public ArrayList<AnnualStatisticsEntity> getCurrentPageAnnualRecords(int currentPage, int pageSize) {
+        int firstResult = (currentPage - 1) * pageSize;
+        int maxResult = currentPage * pageSize;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "select " + AnnualStatisticsDefinition.ID + "," + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + "," +
+                AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT +
+                " from " + AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME + " order by " + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + " desc limit ?,?";
+        Cursor mCursor = db.rawQuery(
+                sql,
+                new String[]{String.valueOf(firstResult),
+                        String.valueOf(maxResult)});
+        ArrayList<AnnualStatisticsEntity> items = new ArrayList<AnnualStatisticsEntity>();
+        int columnCount = mCursor.getColumnCount();
+        while (mCursor.moveToNext()) {
+            AnnualStatisticsEntity dummyItem = new AnnualStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
+            items.add(dummyItem);
+
+        }
+        //不要关闭数据库
+        return items;
+    }
+
 
     public long addAccount(String accountName) {
         SQLiteDatabase db = this.getSQLiteDatabase();
@@ -531,7 +692,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return length;
     }
 
-    public ArrayList<DayRecordsEntity> getDayRecordsAllItems(int currentPage, int pageSize) {
+    public ArrayList<DayRecordsEntity> getCurrentPageDayRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
         int maxResult = currentPage * pageSize;
         SQLiteDatabase db = this.getWritableDatabase();

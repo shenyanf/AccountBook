@@ -1,20 +1,14 @@
 package com.shanshan.myaccountbook.fragment;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.activity.AddRecordActivity;
@@ -27,58 +21,30 @@ import java.util.ArrayList;
 /**
  * Created by heshanshan on 2016/3/25.
  */
-public class DayRecordListFragment extends RecordsListFragment implements AbsListView.OnScrollListener {
-    private int currentPage = 1; //默认在第一页
-    private static final int lineSize = 10;    //每次显示数
-    private int allRecorders = 0;  //全部记录数
-    private int pageSize = 1;  //默认共一页
-    private int lastItem;
-    private LinearLayout loadLayout;
-    private TextView loadInfo;
-    private int alreadyLoadCount = 0;
+public class DayRecordListFragment extends RecordsListFragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        View view = null;
-//            System.out.println("create fragment view date is " + date);
-        view = inflater.inflate(R.layout.fragment_item, container, false);
-        mListView = (ListView) view.findViewById(android.R.id.list);
-
-        //创建一个角标线性布局用来显示"正在加载"
-        loadLayout = new LinearLayout(getActivity());
-        loadLayout.setGravity(Gravity.CENTER);
-        //定义一个文本显示“正在加载”
-        loadInfo = new TextView(getActivity());
-        loadInfo.setText("正在加载...");
-        loadInfo.setGravity(Gravity.CENTER);
-        //增加组件
-        loadLayout.addView(loadInfo, new ActionBar.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        //增加到listView底部
-        mListView.addFooterView(loadLayout);
-
-
-        showAllData();
-        mListView.setOnScrollListener(this);
-
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ((TextView) parent.getChildAt(0)).setTextSize(20, TypedValue.COMPLEX_UNIT_SP);
-            }
-        });
-
-        // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
-
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
         registerForContextMenu(mListView);
 
         return view;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == android.R.id.list) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            menu.setHeaderTitle("记录管理");
+            String[] menuItems = getResources().getStringArray(R.array.records_menu);
+            for (int i = 0; i < menuItems.length; i++) {
+                menu.add(Menu.NONE, i, i, menuItems[i]);
+            }
+        }
     }
 
 
@@ -90,7 +56,7 @@ public class DayRecordListFragment extends RecordsListFragment implements AbsLis
         String menuItemName = menuItems[menuItemIndex];
         String listItemName = "记录管理";
 
-        DayRecordsEntity record = recordList.get((int) info.id);
+        DayRecordsEntity record = (DayRecordsEntity) recordList.get((int) info.id);
 //        System.out.println("===++++++++++++" + record + "++++++++++++++========");
 
 
@@ -98,14 +64,22 @@ public class DayRecordListFragment extends RecordsListFragment implements AbsLis
             System.out.println("删除记录" + record);
             IncomeAndExpensesEntity incomeAndExpenses = myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpensesDefinition.ID + "=?", new String[]{String.valueOf(record.getIncomeOrExpenses())}).get(0);
 
-            myDBHelper.updateWeeklyStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
-            myDBHelper.updateMonthlyStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
-            myDBHelper.updateAnnualStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
+            //如果删除一条收支为0的记录，则不修改周、月、年的记录
+            if (Float.compare(record.getAmount(), 0.00f) != 0) {
+                myDBHelper.updateWeeklyStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
+                myDBHelper.updateMonthlyStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
+                myDBHelper.updateAnnualStatistics(record.getDate(), -record.getAmount(), incomeAndExpenses.getFlag());
+            }
             myDBHelper.deleteRecord(String.valueOf(record.getId()));
 
-            onResume();
+            //删除记录后，重新加载本页，暂时先用这种方法
+            super.clearList();
+            super.initAndLoadFirstPageData();
         }
-        if (menuItemName.equals("修改记录")) {
+
+        if (menuItemName.equals("修改记录"))
+
+        {
             Intent intent = new Intent(getActivity(), AddRecordActivity.class);
 
             intent.putExtra(DBTablesDefinition.RecordsDefinition.TABLE_RECORDS_NAME + DBTablesDefinition.RecordsDefinition.ID, record);
@@ -115,10 +89,13 @@ public class DayRecordListFragment extends RecordsListFragment implements AbsLis
         return true;
     }
 
-    /**
-     * 读取全部数据
-     */
-    public void showAllData() {
+    @Override
+    public ArrayList getNextPageRecords() {
+        return myDBHelper.getCurrentPageDayRecords(currentPage, lineSize);
+    }
+
+    @Override
+    public void init() {
         allRecorders = myDBHelper.getDayRecordsCount();
         //计算总页数
         pageSize = (allRecorders + lineSize - 1) / lineSize;
@@ -126,60 +103,8 @@ public class DayRecordListFragment extends RecordsListFragment implements AbsLis
 //        System.out.println("allRecorders =  " + allRecorders);
 //        System.out.println("pageSize  =  " + pageSize);
 
-        recordList = myDBHelper.getDayRecordsAllItems(currentPage, lineSize);
+        recordList = myDBHelper.getCurrentPageDayRecords(currentPage, lineSize);
 
-        alreadyLoadCount = recordList.size();
-
-        mAdapter = new ArrayAdapter(getActivity(),
-                R.layout.list_item_layout, android.R.id.text1, recordList);
-        mListView.setAdapter(mAdapter);
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisible, int visibleCount,
-                         int totalCount) {
-        lastItem = firstVisible + visibleCount - 1; //统计是否到最后
-
-    }
-
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scorllState) {
-//        System.out.println("进入滚动界面了");
-
-//        System.out.println("lastItem" + lastItem + " alreadyLoadCount" + alreadyLoadCount);
-//        System.out.println("currentPage" + currentPage + "pageSize" + pageSize);
-//        System.out.println("scorllState" + scorllState + " " + OnScrollListener.SCROLL_STATE_IDLE);
-
-        //是否到最底部并且数据没读完
-        if (lastItem == alreadyLoadCount
-                && currentPage < pageSize    //不再滚动
-                && scorllState == OnScrollListener.SCROLL_STATE_IDLE) {
-            currentPage++;
-            //设置显示位置
-            mListView.setSelection(lastItem);
-            //增加数据
-            appendDate();
-        }
-
-    }
-
-    /**
-     * 增加数据
-     */
-    private void appendDate() {
-        ArrayList<DayRecordsEntity> additems = myDBHelper.getDayRecordsAllItems(currentPage, lineSize);
-        alreadyLoadCount = mAdapter.getCount() + additems.size();
-
-        //判断，如果到了最末尾则去掉“正在加载”
-        if (allRecorders == alreadyLoadCount) {
-            mListView.removeFooterView(loadLayout);
-        }
-
-//        System.out.println("追加数据...");
-
-        recordList.addAll(additems);
-        //通知记录改变
-        mAdapter.notifyDataSetChanged();
     }
 
 }

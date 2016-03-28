@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     private FragmentFactory fragmentFactory = null;
     private Logger myLogger = MyLogger.getMyLogger(MainActivity.class.getName());
+
     private RecordsListFragment details = null;
     private MyDBHelper myDBHelper = null;
     private FragmentManager fragmentManager = getFragmentManager();
@@ -122,8 +123,14 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
             editor.commit();
         } else {
             Toast.makeText(this, "Have a good day！Mr. Shen", Toast.LENGTH_SHORT).show();
+
+//            myDBHelper.getWritableDatabase().execSQL("delete  from " + DBTablesDefinition.WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME);
+//            myDBHelper.getWritableDatabase().execSQL("delete  from " + DBTablesDefinition.MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME);
+//            myDBHelper.getWritableDatabase().execSQL("delete  from " + DBTablesDefinition.AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME);
+
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
