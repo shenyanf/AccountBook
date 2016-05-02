@@ -195,16 +195,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public void updateWeeklyStatistics(String dateStr, float amount, int incomeOrExpensesType) {
         SQLiteDatabase db = this.getSQLiteDatabase();
-        Calendar calendar1 = Calendar.getInstance();
-        calendar1.setTime(MyAccountUtil.stringToDate(dateStr));
-        calendar1.setFirstDayOfWeek(Calendar.MONDAY);
-
-        calendar1.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-        final String firstDay = MyAccountUtil.dateToShortString(calendar1.getTime());
-
-        System.out.println("update weeklyStatistics amount is " + amount);
-
+        String firstDay = MyAccountUtil.getMondayDate(dateStr);
 
 //        System.out.println("update Weekly Statistics, date is " + firstDay + "incomeOrExpensesType is " + incomeOrExpensesType);
         List<WeeklyStatisticsEntity> list = getWeeklyStatistics(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=? and " + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "=?",
@@ -230,7 +221,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             WeeklyStatisticsEntity weeklyStatisticsEntity1 = list1.get(0);
 //            System.out.println("weeklyStatistics amount is :" + weeklyStatisticsEntity1.getAmount());
 
-            if (Float.compare(weeklyStatisticsEntity1.getAmount(), 0.00f) == 0) {
+            if (Float.compare(weeklyStatisticsEntity1.getAmount(), 0.00f) <= 0) {
                 db.delete(WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME, WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "=?", new String[]{firstDay});
             }
         }
@@ -249,7 +240,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<WeeklyStatisticsEntity> getCurrentPageWeeklyRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
-        int maxResult = currentPage * pageSize;
+//        int maxResult = currentPage * pageSize;
+
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "select " + WeeklyStatisticsDefinition.ID + "," + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE + "," +
                 WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_AMOUNT +
@@ -260,9 +252,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 sql,
                 new String[]{String.valueOf(firstResult),
-                        String.valueOf(maxResult)});
+                        String.valueOf(pageSize)});
         ArrayList<WeeklyStatisticsEntity> items = new ArrayList<WeeklyStatisticsEntity>();
-        int columnCount = mCursor.getColumnCount();
+
         while (mCursor.moveToNext()) {
             WeeklyStatisticsEntity dummyItem = new WeeklyStatisticsEntity(mCursor.getInt(0),
                     mCursor.getString(mCursor.getColumnIndex(WeeklyStatisticsDefinition.COLUMN_WEEKLY_STATISTICS_DATE)),
@@ -367,7 +359,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             if (list1 != null && !list.isEmpty() && list.size() == 1) {
                 MonthlyStatisticsEntity monthlyStatistics1 = (MonthlyStatisticsEntity) list1.get(0);
 
-                if (Float.compare(monthlyStatistics1.getAmount(), 0.00f) == 0) {
+                if (Float.compare(monthlyStatistics1.getAmount(), 0.00f) <= 0) {
                     db.delete(MonthlyStatisticsDefinition.TABLE_MONTHLY_STATISTICS_NAME, MonthlyStatisticsDefinition.ID + "=?", new String[]{String.valueOf(monthlyStatistics1.getId())});
                 }
             }
@@ -393,7 +385,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<MonthlyStatisticsEntity> getCurrentPageMonthlyRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
-        int maxResult = currentPage * pageSize;
+//        int maxResult = currentPage * pageSize;
+
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "select " + MonthlyStatisticsDefinition.ID + "," + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_DATE + "," +
                 MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + MonthlyStatisticsDefinition.COLUMN_MONTHLY_STATISTICS_AMOUNT +
@@ -401,9 +394,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 sql,
                 new String[]{String.valueOf(firstResult),
-                        String.valueOf(maxResult)});
+                        String.valueOf(pageSize)});
         ArrayList<MonthlyStatisticsEntity> items = new ArrayList<MonthlyStatisticsEntity>();
-        int columnCount = mCursor.getColumnCount();
+
         while (mCursor.moveToNext()) {
             MonthlyStatisticsEntity dummyItem = new MonthlyStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
             items.add(dummyItem);
@@ -502,7 +495,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             List<AnnualStatisticsEntity> list1 = getAnnualStatistics(AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + "=?", new String[]{firstDay});
             if (list1 != null && !list.isEmpty() && list.size() == 1) {
                 AnnualStatisticsEntity annualStatisticsEntity1 = (AnnualStatisticsEntity) list1.get(0);
-                if (Float.compare(annualStatisticsEntity1.getAmount(), 0.00f) == 0) {
+                if (Float.compare(annualStatisticsEntity1.getAmount(), 0.00f) <= 0) {
                     db.delete(AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME, AnnualStatisticsDefinition.ID + "=?", new String[]{String.valueOf(annualStatisticsEntity1.getId())});
                 }
             }
@@ -581,7 +574,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<AnnualStatisticsEntity> getCurrentPageAnnualRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
-        int maxResult = currentPage * pageSize;
+//        int maxResult = currentPage * pageSize;
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "select " + AnnualStatisticsDefinition.ID + "," + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_DATE + "," +
                 AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_FLAG_OF_INCOME_OR_EXPENSE + "," + AnnualStatisticsDefinition.COLUMN_ANNUAL_STATISTICS_AMOUNT +
@@ -589,9 +582,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 sql,
                 new String[]{String.valueOf(firstResult),
-                        String.valueOf(maxResult)});
+                        String.valueOf(pageSize)});
         ArrayList<AnnualStatisticsEntity> items = new ArrayList<AnnualStatisticsEntity>();
-        int columnCount = mCursor.getColumnCount();
+
         while (mCursor.moveToNext()) {
             AnnualStatisticsEntity dummyItem = new AnnualStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
             items.add(dummyItem);
@@ -694,7 +687,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<DayRecordsEntity> getCurrentPageDayRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
-        int maxResult = currentPage * pageSize;
+
+//        sqllite limit is different with mysql,limit m,m means start with m and offset n
+
+//        int maxResult = currentPage * pageSize;
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "select " + RecordsDefinition.ID + "," + RecordsDefinition.COLUMN_RECORDS_ACCOUNT_NAME_ID + "," + RecordsDefinition.COLUMN_RECORDS_DATE + "," +
                 RecordsDefinition.COLUMN_RECORDS_FLAG_OF_INCOME_OR_EXPENSE + "," + RecordsDefinition.COLUMN_RECORDS_AMOUNT + "," +
@@ -702,7 +698,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 sql,
                 new String[]{String.valueOf(firstResult),
-                        String.valueOf(maxResult)});
+                        String.valueOf(pageSize)});
         ArrayList<DayRecordsEntity> items = new ArrayList<DayRecordsEntity>();
         int columnCount = mCursor.getColumnCount();
         while (mCursor.moveToNext()) {

@@ -113,7 +113,17 @@ public class PieChartActivity extends AppCompatActivity {
             setHasOptionsMenu(true);
             View rootView = inflater.inflate(R.layout.fragment_pie_chart, container, false);
             chart = (PieChartView) rootView.findViewById(R.id.chart);
-            chart.setOnValueTouchListener(new ChartOnValueSelectListener());
+            chart.setOnValueTouchListener(new PieChartOnValueSelectListener() {
+                @Override
+                public void onValueSelected(int arcIndex, SliceValue value) {
+                    Toast.makeText(getActivity(), String.valueOf(value.getLabelAsChars()), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onValueDeselected() {
+
+                }
+            });
 
             toggleLabelForSelected();
             return rootView;
@@ -341,18 +351,6 @@ public class PieChartActivity extends AppCompatActivity {
         public void onDetach() {
             super.onDetach();
         }
-
-        class ChartOnValueSelectListener implements PieChartOnValueSelectListener {
-            @Override
-            public void onValueSelected(int arcIndex, SliceValue value) {
-                Toast.makeText(getActivity(), String.valueOf(value.getLabelAsChars()), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onValueDeselected() {
-                // TODO Auto-generated method stub
-
-            }
-        }
     }
+
 }

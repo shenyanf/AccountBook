@@ -236,6 +236,7 @@ public class AddRecordActivity extends Activity {
 
     public void addRecord(View view) {
         String dateStr = MyAccountUtil.dateToString(MyAccountUtil.stringToDate(textView.getText().toString()));
+        System.out.println("输入的时间是" + dateStr + " or " + textView.getText().toString());
 
         String accountId = String.valueOf(spinnerAccount.getSelectedItemId() + 1);
         String incomeOrexpensesId = String.valueOf(spinnerIncomeOrExpenses.getSelectedItemId() + 1);

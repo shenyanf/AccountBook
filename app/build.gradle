@@ -9,8 +9,13 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "2.0"
+        versionName "2.1"
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
