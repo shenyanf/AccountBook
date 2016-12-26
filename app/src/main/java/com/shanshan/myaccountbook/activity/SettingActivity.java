@@ -45,7 +45,11 @@ public class SettingActivity extends Activity {
                 startActivity(aboutAuthorIntent);
             }
         });
+        this.callStatistic();
 
+    }
+
+    private void callStatistic() {
         TextView statistics = (TextView) findViewById(R.id.statistics);
         final Intent statisticsIntent = new Intent(this, PieChartActivity.class);
         statistics.setOnClickListener(new View.OnClickListener() {

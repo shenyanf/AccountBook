@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shanshan.myaccountbook.R;
@@ -181,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         List<AbstractRecord> list = getRecordListfromTabPosition();
         Toast.makeText(getApplicationContext(),
                 list.get(Integer.valueOf(id)).detail(),
-                Toast.LENGTH_SHORT).show();
+        Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         myLogger.debug("Main activity starting...");
     }
 
+
     public void onClickAdd(View view) {
 
         System.out.print("init account and income or expenses tables");
@@ -220,4 +222,9 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 //        ((ArrayAdapter) details.getmAdapter()).notifyDataSetChanged();
     }
 
+    public void onClickStatistic(View view) {
+        myLogger.debug("call pieChartActivity from mainActivity");
+        final Intent statisticsIntent = new Intent(this, PieChartActivity.class);
+        startActivity(statisticsIntent);
+    }
 }

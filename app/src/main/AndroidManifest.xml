@@ -53,11 +53,13 @@
             android:label="@string/add_income_expenses" />
         <activity
             android:name=".activity.AboutAuthorActivity"
-            android:label="@string/about_author"></activity>
+            android:label="@string/about_author" />
         <activity
             android:name=".activity.PieChartActivity"
-            android:label="@string/title_activity_pie_chart"></activity>
-
+            android:label="@string/title_activity_pie_chart" />
+        <activity
+            android:name=".activity.RecordListActivity"
+            android:label="@string/title_activity_record_list" />
     </application>
 
 </manifest>

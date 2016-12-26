@@ -6,4 +6,7 @@
     <item name="set_account_layout" type="id" />
     <item name="income_layout" type="id"/>
     <item name="expenses_layout" type="id"/>
+    <item name="list_type" type="id"/>
+    <item name="add_income_expenses" type="id"/>
+    <item name="statistics" type="id"/>
 </resources>

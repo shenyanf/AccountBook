@@ -9,6 +9,7 @@
     <string name="title_activity_settings">设置</string>
     <string name="select_account">账 户</string>
     <string name="select_income_expenses_type">收/支</string>
+    <string name="add_record">加一条</string>
     <string name="add_record_amount">金额</string>
     <string name="add_record_remarks">备注</string>
     <string name="store">保存</string>
@@ -20,6 +21,7 @@
     <string name="expenses">支出</string>
 
     <string name="title_activity_pie_chart">统计</string>
+    <string name="title_activity_record_list">记录详情</string>
 
     <string name="manage_records">记录管理</string>
     <array name="records_menu">

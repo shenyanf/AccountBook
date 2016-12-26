@@ -13,6 +13,7 @@ import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDe
 import com.shanshan.myaccountbook.database.DBTablesDefinition.MonthlyStatisticsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.RecordsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.WeeklyStatisticsDefinition;
+import com.shanshan.myaccountbook.entity.AbstractRecord;
 import com.shanshan.myaccountbook.entity.AccountsEntity;
 import com.shanshan.myaccountbook.entity.AnnualStatisticsEntity;
 import com.shanshan.myaccountbook.entity.DayRecordsEntity;
@@ -25,6 +26,7 @@ import com.shanshan.myaccountbook.util.MyLogger;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -238,7 +240,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return length;
     }
 
-    public ArrayList<WeeklyStatisticsEntity> getCurrentPageWeeklyRecords(int currentPage, int pageSize) {
+    public ArrayList<AbstractRecord> getCurrentPageWeeklyRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
 //        int maxResult = currentPage * pageSize;
 
@@ -253,7 +255,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 sql,
                 new String[]{String.valueOf(firstResult),
                         String.valueOf(pageSize)});
-        ArrayList<WeeklyStatisticsEntity> items = new ArrayList<WeeklyStatisticsEntity>();
+        ArrayList<AbstractRecord> items = new ArrayList<AbstractRecord>();
 
         while (mCursor.moveToNext()) {
             WeeklyStatisticsEntity dummyItem = new WeeklyStatisticsEntity(mCursor.getInt(0),
@@ -383,7 +385,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return length;
     }
 
-    public ArrayList<MonthlyStatisticsEntity> getCurrentPageMonthlyRecords(int currentPage, int pageSize) {
+    public ArrayList<AbstractRecord> getCurrentPageMonthlyRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
 //        int maxResult = currentPage * pageSize;
 
@@ -395,7 +397,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 sql,
                 new String[]{String.valueOf(firstResult),
                         String.valueOf(pageSize)});
-        ArrayList<MonthlyStatisticsEntity> items = new ArrayList<MonthlyStatisticsEntity>();
+        ArrayList<AbstractRecord> items = new ArrayList<AbstractRecord>();
 
         while (mCursor.moveToNext()) {
             MonthlyStatisticsEntity dummyItem = new MonthlyStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
@@ -572,7 +574,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return length;
     }
 
-    public ArrayList<AnnualStatisticsEntity> getCurrentPageAnnualRecords(int currentPage, int pageSize) {
+    public ArrayList<AbstractRecord> getCurrentPageAnnualRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
 //        int maxResult = currentPage * pageSize;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -583,7 +585,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 sql,
                 new String[]{String.valueOf(firstResult),
                         String.valueOf(pageSize)});
-        ArrayList<AnnualStatisticsEntity> items = new ArrayList<AnnualStatisticsEntity>();
+        ArrayList<AbstractRecord> items = new ArrayList<AbstractRecord>();
 
         while (mCursor.moveToNext()) {
             AnnualStatisticsEntity dummyItem = new AnnualStatisticsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getInt(2), mCursor.getFloat(3));
@@ -685,7 +687,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return length;
     }
 
-    public ArrayList<DayRecordsEntity> getCurrentPageDayRecords(int currentPage, int pageSize) {
+    public ArrayList<AbstractRecord> getCurrentPageDayRecords(int currentPage, int pageSize) {
         int firstResult = (currentPage - 1) * pageSize;
 
 //        sqllite limit is different with mysql,limit m,m means start with m and offset n
@@ -699,7 +701,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 sql,
                 new String[]{String.valueOf(firstResult),
                         String.valueOf(pageSize)});
-        ArrayList<DayRecordsEntity> items = new ArrayList<DayRecordsEntity>();
+        ArrayList<AbstractRecord> items = new ArrayList<AbstractRecord>();
         int columnCount = mCursor.getColumnCount();
         while (mCursor.moveToNext()) {
             DayRecordsEntity dummyItem = new DayRecordsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getString(2), mCursor.getInt(3), mCursor.getFloat(4), mCursor.getString(5));
@@ -710,6 +712,39 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return items;
     }
 
+    public ArrayList<AbstractRecord> getDayRecordsInSpecifiedWeek(String currentDate) {
+//        sqllite limit is different with mysql,limit m,m means start with m and offset n
+        String startDate = MyAccountUtil.getMondayDate(currentDate);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(MyAccountUtil.shortStringToDate(startDate));
+        cal.add(Calendar.DATE, 6);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String endDate = sdf.format(cal.getTime());
+
+        myLogger.debug("startDate is " + startDate + " endDate is " + endDate);
+
+//        int maxResult = currentPage * pageSize;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "select " + RecordsDefinition.ID + "," + RecordsDefinition.COLUMN_RECORDS_ACCOUNT_NAME_ID + "," + RecordsDefinition.COLUMN_RECORDS_DATE + "," +
+                RecordsDefinition.COLUMN_RECORDS_FLAG_OF_INCOME_OR_EXPENSE + "," + RecordsDefinition.COLUMN_RECORDS_AMOUNT + "," +
+                RecordsDefinition.COLUMN_RECORDS_REMARKS + " from " + RecordsDefinition.TABLE_RECORDS_NAME + " where date(" + RecordsDefinition.COLUMN_RECORDS_DATE + ")  between  date(?) and date(?) " +
+                " order by " + RecordsDefinition.COLUMN_RECORDS_DATE;
+
+        myLogger.debug(sql);
+
+        Cursor mCursor = db.rawQuery(
+                sql,
+                new String[]{startDate, endDate});
+        ArrayList<AbstractRecord> items = new ArrayList<AbstractRecord>();
+        int columnCount = mCursor.getColumnCount();
+        while (mCursor.moveToNext()) {
+            DayRecordsEntity dummyItem = new DayRecordsEntity(mCursor.getInt(0), mCursor.getString(1), mCursor.getString(2), mCursor.getInt(3), mCursor.getFloat(4), mCursor.getString(5));
+            items.add(dummyItem);
+
+        }
+        //不要关闭数据库
+        return items;
+    }
 
     public List<DayRecordsEntity> getRecords() {
         return getRecords(null, null);

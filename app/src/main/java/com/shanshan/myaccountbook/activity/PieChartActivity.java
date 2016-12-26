@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -20,6 +21,9 @@ import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
+import com.shanshan.myaccountbook.util.MyLogger;
+
+import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
 public class PieChartActivity extends AppCompatActivity {
+    private Logger myLogger = MyLogger.getMyLogger(PieChartActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +53,11 @@ public class PieChartActivity extends AppCompatActivity {
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewpager);
         vp.setAdapter(adapter);
+        myLogger.debug("PieChartsActivity create");
     }
 
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter {
+    public static class FragmentAdapter extends FragmentStatePagerAdapter {
         private List<String> fragmentArgs;
 
         public FragmentAdapter(android.support.v4.app.FragmentManager fm, List<String> fragmentArgs) {
@@ -68,7 +74,8 @@ public class PieChartActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             String[] args = fragmentArgs.get(position).split("#");
-            return new PlaceholderFragment(Boolean.valueOf(args[0]), Boolean.valueOf(args[1]), args[2]);
+            System.out.println(args);
+            return PlaceholderFragment.newInstance(Boolean.valueOf(args[0]), Boolean.valueOf(args[1]), args[2]);
         }
 
         @Override
@@ -80,7 +87,7 @@ public class PieChartActivity extends AppCompatActivity {
     /**
      * A fragment containing a pie chart.
      */
-    public class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment {
         private List<SliceValue> values = new ArrayList<SliceValue>();
         private PieChartView chart;
         private PieChartData data;
@@ -101,11 +108,25 @@ public class PieChartActivity extends AppCompatActivity {
         public PlaceholderFragment() {
         }
 
-        public PlaceholderFragment(boolean isIncome, boolean isAccount, String groupBy) {
-            this.isIncome = isIncome;
+        public static PlaceholderFragment newInstance(boolean isIncome, boolean isAccount, String groupBy) {
+            PlaceholderFragment placeholderFragment = new PlaceholderFragment();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("isIncome", isIncome);
+            bundle.putBoolean("isAccount", isAccount);
+            bundle.putString("groupBy", groupBy);
+            placeholderFragment.setArguments(bundle);
+            return placeholderFragment;
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            Bundle args = getArguments();
+
+            this.isIncome = args.getBoolean("isIncome");
             this.centerText1 = isIncome ? "收入" : "支出";
-            this.centerText2 = isAccount ? "账户类别" : "收支类别";
-            this.groupBy = groupBy;
+            this.centerText2 = args.getBoolean("isAccount") ? "账户类别" : "收支类别";
+            this.groupBy = args.getString("groupBy");
         }
 
         @Override
@@ -144,7 +165,7 @@ public class PieChartActivity extends AppCompatActivity {
 
         @Override
         public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-            getMenuInflater().inflate(R.menu.pie_chart, menu);
+            inflater.inflate(R.menu.pie_chart, menu);
             super.onCreateOptionsMenu(menu, inflater);
         }
 

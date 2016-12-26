@@ -3,7 +3,10 @@ package com.shanshan.myaccountbook.fragment;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +20,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.shanshan.myaccountbook.R;
+import com.shanshan.myaccountbook.activity.MainActivity;
 import com.shanshan.myaccountbook.database.MyDBHelper;
 import com.shanshan.myaccountbook.entity.AbstractRecord;
+import com.shanshan.myaccountbook.util.MyLogger;
+
+import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * A fragment representing a list of Items.
@@ -33,8 +41,10 @@ import java.util.List;
  */
 public abstract class RecordsListFragment extends Fragment implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener {
 
-    protected List recordList = null;
+    protected List<AbstractRecord> recordList = null;
     protected MyDBHelper myDBHelper;
+    protected Logger myLogger = MyLogger.getMyLogger(RecordsListFragment.class.getName());
+
 
     protected OnFragmentInteractionListener mListener = null;
 
@@ -58,6 +68,7 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
 
     protected LinearLayout loadLayout;
     protected TextView loadInfo;
+    private int mSelectedItem;//选中的行
 
     /**
      * 初始化变量
@@ -143,6 +154,7 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mSelectedItem = position;
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
@@ -255,7 +267,19 @@ public abstract class RecordsListFragment extends Fragment implements AdapterVie
         }
 
         mAdapter = new ArrayAdapter(getActivity(),
-                R.layout.list_item_layout, android.R.id.text1, recordList);
+                R.layout.list_item_layout, android.R.id.text1, recordList) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View itemView = super.getView(position, convertView, parent);
+                if (position % 2 == 0) {
+                    itemView.setBackgroundColor(Color.LTGRAY);
+                } else {
+                    itemView.setBackgroundColor(Color.WHITE);
+                }
+                return itemView;
+            }
+        };
         mListView.setAdapter(mAdapter);
     }
 
