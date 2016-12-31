@@ -27,6 +27,21 @@ public class MyAccountUtil {
         return null;
     }
 
+    public static String getSundayDate(String currentDate) {
+        String startDate = MyAccountUtil.getMondayDate(currentDate);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(MyAccountUtil.shortStringToDate(startDate));
+        cal.add(Calendar.DATE, 6);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String endDate = sdf.format(cal.getTime());
+        return endDate;
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
+    }
+
     public static String getMondayDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();

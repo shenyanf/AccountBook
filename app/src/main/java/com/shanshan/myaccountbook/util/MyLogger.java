@@ -6,6 +6,7 @@ import com.shanshan.myaccountbook.activity.MainActivity;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.File;
 
@@ -24,11 +25,13 @@ public class MyLogger {
             logDir = Environment.getExternalStorageDirectory() + File.separator + "myaccount" + File.separator + "logs";
         } else {
             System.out.println("SD card hasn't already mounted");
-            logDir = Environment.getDataDirectory() + File.separator + "myaccount" + File.separator + "logs";
+            logDir = MainActivity.getBaseDir() + File.separator + "myaccount" + File.separator + "logs";
         }
         File destDir = new File(logDir);
         if (!destDir.exists()) {
-            destDir.mkdirs();
+            Boolean isSuccess = destDir.mkdirs();
+            if (!isSuccess)
+                System.out.println("create dir " + destDir + " failed.");
         }
 
 

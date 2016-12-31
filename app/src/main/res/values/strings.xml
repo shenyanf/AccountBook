@@ -49,4 +49,8 @@
     </array>
     <string name="add_income_expenses">添加收支项</string>
     <string name="add_income_expenses_name">收支项名称</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

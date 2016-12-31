@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 
+import com.shanshan.myaccountbook.activity.MainActivity;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AnnualStatisticsDefinition;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
@@ -24,6 +25,7 @@ import com.shanshan.myaccountbook.util.MyAccountUtil;
 import com.shanshan.myaccountbook.util.MyLogger;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -117,7 +119,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             if (MyAccountUtil.isSDCardMounted()) {
                 dbPath = Environment.getExternalStorageDirectory().getAbsolutePath();
             } else {
-                dbPath = Environment.getDataDirectory().getAbsolutePath();
+                dbPath = MainActivity.getBaseDir();
             }
             dbPath += File.separator + "myaccount" + File.separator + "databases" + File.separator + DATABASE_NAME;
 
@@ -715,11 +717,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public ArrayList<AbstractRecord> getDayRecordsInSpecifiedWeek(String currentDate) {
 //        sqllite limit is different with mysql,limit m,m means start with m and offset n
         String startDate = MyAccountUtil.getMondayDate(currentDate);
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(MyAccountUtil.shortStringToDate(startDate));
-        cal.add(Calendar.DATE, 6);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String endDate = sdf.format(cal.getTime());
+
+        String endDate = MyAccountUtil.getSundayDate(currentDate);
 
         myLogger.debug("startDate is " + startDate + " endDate is " + endDate);
 

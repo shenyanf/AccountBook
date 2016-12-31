@@ -5,6 +5,8 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,16 +22,22 @@ import com.shanshan.myaccountbook.entity.AbstractRecord;
 import com.shanshan.myaccountbook.fragment.EnumFragment;
 import com.shanshan.myaccountbook.fragment.FragmentFactory;
 import com.shanshan.myaccountbook.fragment.RecordsListFragment;
+import com.shanshan.myaccountbook.util.MyAccountUtil;
 import com.shanshan.myaccountbook.util.MyLogger;
+import com.shanshan.myaccountbook.util.mail.SendMail;
 
 import org.apache.log4j.Logger;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecordsListFragment.OnFragmentInteractionListener {
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     private FragmentFactory fragmentFactory = null;
-    private Logger myLogger = MyLogger.getMyLogger(MainActivity.class.getName());
+    private static String baseDir = null;
+    private Logger myLogger = null;
 
     private RecordsListFragment details = null;
     private MyDBHelper myDBHelper = null;
@@ -72,10 +80,59 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         }
     }
 
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Toast.makeText(getBaseContext(), msg.getData().getString("text"), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    Runnable sendMail = new Runnable() {
+        @Override
+        public void run() {
+            sendMail();
+        }
+    };
+
+    private void sendMail() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        SharedPreferences sharedPreferences = getSharedPreferences("appInfo", MODE_PRIVATE);
+        myLogger.debug("current day of week " + calendar.get(Calendar.DAY_OF_WEEK) + " dest " + Calendar.SATURDAY);
+        if (Calendar.SATURDAY == calendar.get(Calendar.DAY_OF_WEEK)) {
+            boolean isBackup = sharedPreferences.getBoolean(MyAccountUtil.getCurrentDate(), true);
+            if (isBackup) {
+                Boolean isSend = SendMail.send();
+                String text = null;
+                if (isSend) {
+                    text = "Backup Success!Check Email.";
+                } else {
+                    text = "Backup fail! Please check your net and restart Myaccount again.";
+                }
+
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("text", text);
+                msg.setData(data);
+                handler.sendMessage(msg);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MyAccountUtil.getCurrentDate(), !isSend);
+                editor.commit();
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //set base dir, if not sd card this dir will be the dir of log and db
+        setBaseDir(getFilesDir().toString());
+
+        myLogger = MyLogger.getMyLogger(MainActivity.class.getName());
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablyout);
         tabLayout.addTab(tabLayout.newTab().setText("日"));
         tabLayout.addTab(tabLayout.newTab().setText("周"));
@@ -123,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
             editor.putBoolean("firstRun", false);
             editor.commit();
         } else {
+            myLogger.debug("before send mail");
+            new Thread(sendMail).start();
+            
             Toast.makeText(this, "Have a good day！Mr. Shen", Toast.LENGTH_SHORT).show();
 
 //            myDBHelper.getWritableDatabase().execSQL("delete  from " + DBTablesDefinition.WeeklyStatisticsDefinition.TABLE_WEEKLY_STATISTICS_NAME);
@@ -182,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         List<AbstractRecord> list = getRecordListfromTabPosition();
         Toast.makeText(getApplicationContext(),
                 list.get(Integer.valueOf(id)).detail(),
-        Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -226,5 +286,13 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
         myLogger.debug("call pieChartActivity from mainActivity");
         final Intent statisticsIntent = new Intent(this, PieChartActivity.class);
         startActivity(statisticsIntent);
+    }
+
+    public static void setBaseDir(String dir) {
+        baseDir = dir;
+    }
+
+    public static String getBaseDir() {
+        return baseDir;
     }
 }
