@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class AddAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         /*not display title*/
         setContentView(R.layout.activity_add_account);
+
         setTitle("添加账户");
         /*get the SqliteDatabasehelper*/
         myDBHelper = MyDBHelper.newInstance(this);

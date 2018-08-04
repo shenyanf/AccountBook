@@ -51,7 +51,7 @@ public class SettingActivity extends Activity {
 
     private void callStatistic() {
         TextView statistics = (TextView) findViewById(R.id.statistics);
-        final Intent statisticsIntent = new Intent(this, PieChartActivity.class);
+        final Intent statisticsIntent = new Intent(this, ChartActivity.class);
         statistics.setOnClickListener(new View.OnClickListener() {
 
             @Override

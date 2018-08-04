@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pie_chart_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"></lecho.lib.hellocharts.view.PieChartView>
+
+    <lecho.lib.hellocharts.view.ColumnChartView
+        android:id="@+id/column_chart"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"></lecho.lib.hellocharts.view.ColumnChartView>
+</LinearLayout>

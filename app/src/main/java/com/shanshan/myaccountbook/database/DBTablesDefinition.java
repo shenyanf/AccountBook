@@ -62,7 +62,10 @@ public final class DBTablesDefinition {
         public static final String ID = "id";
         public static final String COLUMN_INOREXP_NAME = "name";
         /*0 income, 1 expenses*/
-        public static final String COLUMN_INOREXP_FLAG = "flag";
+        public static final String COLUMN_INOREXP_FLAG = "inOrOut";
+        /*0 able, 1 disable*/
+        public static final String DISABLE = "disable";
+
         /*=========================*/
     }
 

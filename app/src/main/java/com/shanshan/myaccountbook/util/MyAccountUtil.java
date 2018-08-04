@@ -5,8 +5,10 @@ import android.os.Environment;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by heshanshan on 2015/12/25.
@@ -49,7 +51,6 @@ public class MyAccountUtil {
         try {
             time = sdf.parse(dateStr);
             cal.setTime(time);
-            System.out.println("input date is " + sdf.format(cal.getTime())); // 输出要计算日期
 
             // 判断要计算的日期是否是周日，如果是则减一天计算周六的，否则会出问题，计算到下一周去了
             int dayWeek = cal.get(Calendar.DAY_OF_WEEK);// 获得当前日期是一个星期的第几天
@@ -61,7 +62,6 @@ public class MyAccountUtil {
 
             int day = cal.get(Calendar.DAY_OF_WEEK);// 获得当前日期是一个星期的第几天
             cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);// 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
-            System.out.println("Monday of this week is " + sdf.format(cal.getTime()));
 
             return sdf.format(cal.getTime());
         } catch (ParseException e) {
@@ -102,5 +102,33 @@ public class MyAccountUtil {
 
     public static boolean isSDCardMounted() {
         return Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+    }
+
+    public static int getCurrentYear() {
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.YEAR);
+    }
+
+    public static int getCurrentMonth() {
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH) + 1;
+        return month;
+    }
+
+    public static List<Integer> range(int start, int end, int step) {
+        ArrayList<Integer> res = new ArrayList<>();
+
+        if (start < 0 || end < 0 || step <= 0) {
+            return res;
+        }
+
+        if (end < start) {
+            return res;
+        }
+
+        for (int i = start; i < end; i = i + step) {
+            res.add(i);
+        }
+        return res;
     }
 }

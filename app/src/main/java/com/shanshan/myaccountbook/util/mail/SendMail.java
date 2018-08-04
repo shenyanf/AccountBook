@@ -87,7 +87,6 @@ public class SendMail {
 
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
         } catch (Exception mex) {
             mex.printStackTrace();
             return Boolean.FALSE;

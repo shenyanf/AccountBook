@@ -44,6 +44,7 @@ public class RecordListActivity extends AppCompatActivity implements RecordsList
                 super.onCreate(savedInstanceState);
             }
 
+
             @Override
             public void init() {
                 String currentDate = getIntent().getStringExtra("currentDate");

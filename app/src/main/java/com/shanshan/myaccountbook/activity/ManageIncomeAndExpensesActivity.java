@@ -15,10 +15,16 @@ import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.button.AddButton;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.IncomeOrExpensesDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
+import com.shanshan.myaccountbook.entity.IncomeAndExpensesEntity;
+import com.shanshan.myaccountbook.util.MyLogger;
+
+import org.apache.log4j.Logger;
+
 
 public class ManageIncomeAndExpensesActivity extends AppCompatActivity {
     private ArrayAdapter adapterIncomeAndExpenses = null;
     private MyDBHelper myDBHelper = null;
+    private Logger myLogger = MyLogger.getMyLogger(ManageIncomeAndExpensesActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +76,12 @@ public class ManageIncomeAndExpensesActivity extends AppCompatActivity {
         String[] menuItems = getResources().getStringArray(R.array.income_expenses_menu);
         String menuItemName = menuItems[menuItemIndex];
         String listItemName = "收支项管理";
-        String incomeOrExpensesId = String.valueOf(info.id + 1);
+        IncomeAndExpensesEntity incomeAndExpensesEntity = (IncomeAndExpensesEntity) adapterIncomeAndExpenses.getItem(info.position);
+
+        String incomeOrExpensesId = String.valueOf(incomeAndExpensesEntity.getId());
 
         if (menuItemName.equals("删除收支项")) {
-            System.out.println("删除收支项" + myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrExpensesId}));
+            myLogger.debug("删除收支项 id:"+incomeOrExpensesId+" name:" + myDBHelper.getIncomeAndExpenses(IncomeOrExpensesDefinition.ID + "=?", new String[]{incomeOrExpensesId}));
             myDBHelper.deleteIncomeOrExpenses(incomeOrExpensesId);
             onResume();
         } else {

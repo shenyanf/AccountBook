@@ -61,7 +61,6 @@ public class DayRecordListFragment extends RecordsListFragment {
 
 
         if (menuItemName.equals("删除记录")) {
-            System.out.println("删除记录" + record);
             IncomeAndExpensesEntity incomeAndExpenses = myDBHelper.getIncomeAndExpenses(DBTablesDefinition.IncomeOrExpensesDefinition.ID + "=?", new String[]{String.valueOf(record.getIncomeOrExpenses())}).get(0);
 
             //如果删除一条收支为0的记录，则不修改周、月、年的记录
@@ -77,9 +76,7 @@ public class DayRecordListFragment extends RecordsListFragment {
             super.initAndLoadFirstPageData();
         }
 
-        if (menuItemName.equals("修改记录"))
-
-        {
+        if (menuItemName.equals("修改记录")) {
             Intent intent = new Intent(getActivity(), AddRecordActivity.class);
 
             intent.putExtra(DBTablesDefinition.RecordsDefinition.TABLE_RECORDS_NAME + DBTablesDefinition.RecordsDefinition.ID, record);

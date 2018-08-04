@@ -33,6 +33,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
+
 public class MainActivity extends AppCompatActivity implements RecordsListFragment.OnFragmentInteractionListener {
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     private FragmentFactory fragmentFactory = null;
@@ -154,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
                 fragmentTransaction.replace(R.id.list_fragment, details);
                 fragmentTransaction.commit();
 
-                System.out.println("change tab " + tab.getPosition());
                 myLogger.debug("change tab " + tab.getPosition());
 
             }
@@ -190,6 +191,8 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 //            myDBHelper.getWritableDatabase().execSQL("delete  from " + DBTablesDefinition.AnnualStatisticsDefinition.TABLE_ANNUAL_STATISTICS_NAME);
 
         }
+
+        SQLiteStudioService.instance ().start(this);
     }
 
 
@@ -197,7 +200,6 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        System.out.println("on create menu ....");
         myLogger.debug("on create menu ....");
         return super.onCreateOptionsMenu(menu);
     }
@@ -266,14 +268,11 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("Main activity starting...");
         myLogger.debug("Main activity starting...");
     }
 
 
     public void onClickAdd(View view) {
-
-        System.out.print("init account and income or expenses tables");
         myLogger.debug("init account and income or expenses tables");
         Intent intent;
         intent = new Intent(this, AddRecordActivity.class);
@@ -284,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements RecordsListFragme
 
     public void onClickStatistic(View view) {
         myLogger.debug("call pieChartActivity from mainActivity");
-        final Intent statisticsIntent = new Intent(this, PieChartActivity.class);
+        final Intent statisticsIntent = new Intent(this, ChartActivity.class);
         startActivity(statisticsIntent);
     }
 

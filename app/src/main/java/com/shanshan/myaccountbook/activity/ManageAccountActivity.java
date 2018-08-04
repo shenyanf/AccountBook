@@ -15,11 +15,16 @@ import com.shanshan.myaccountbook.R;
 import com.shanshan.myaccountbook.button.AddButton;
 import com.shanshan.myaccountbook.database.DBTablesDefinition.AccountsDefinition;
 import com.shanshan.myaccountbook.database.MyDBHelper;
+import com.shanshan.myaccountbook.entity.AccountsEntity;
+import com.shanshan.myaccountbook.util.MyLogger;
+
+import org.apache.log4j.Logger;
 
 public class ManageAccountActivity extends AppCompatActivity {
     private ArrayAdapter adapterAccount = null;
     private MyDBHelper myDBHelper = null;
     private ListView accountListView = null;
+    private Logger myLogger = MyLogger.getMyLogger(ManageAccountActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +76,11 @@ public class ManageAccountActivity extends AppCompatActivity {
         String menuItemName = menuItems[menuItemIndex];
         String listItemName = "账户管理";
 
-        String accountId = String.valueOf(info.id + 1);
+        AccountsEntity accountsEntity = (AccountsEntity) adapterAccount.getItem(((int) info.position));
+        String accountId = String.valueOf(accountsEntity.getId());
 
         if (menuItemName.equals("删除账户")) {
-            System.out.println("删除账户" + myDBHelper.getAccount(AccountsDefinition.ID + "=?", new String[]{accountId}));
+            myLogger.debug("删除账户" + " id:"+accountId+" name:"+myDBHelper.getAccount(AccountsDefinition.ID + "=?", new String[]{accountId}));
             myDBHelper.deleteAccount(accountId);
             onResume();
         } else {
@@ -89,7 +95,6 @@ public class ManageAccountActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapterAccount.clear();
-        System.out.println("manage account on resume function");
         adapterAccount.addAll(myDBHelper.getAccount(AccountsDefinition.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(AccountsDefinition.ACCOUNT_AVAILABLE)}));
         adapterAccount.notifyDataSetChanged();
     }

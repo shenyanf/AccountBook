@@ -22,7 +22,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
     <exclude-output />
@@ -81,9 +81,17 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-beta4/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-safeguard" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
@@ -97,21 +105,30 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 24 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="constraint-layout-1.0.0-beta4" level="project" />
-    <orderEntry type="library" exported="" name="additionnal" level="project" />
-    <orderEntry type="library" exported="" name="mail" level="project" />
-    <orderEntry type="library" exported="" name="android-logging-log4j-1.0.2" level="project" />
-    <orderEntry type="library" exported="" name="hellocharts-library-1.5.8" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="constraint-layout-solver-1.0.0-beta4" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="log4j-1.2.17" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
-    <orderEntry type="library" exported="" name="activation" level="project" />
-    <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:animated-vector-drawable-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-compat-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:recyclerview-v7-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:design-24.2.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: junit:junit:4.12@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\mail.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\log4j-1.2.17.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-annotations:24.2.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-vector-drawable-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-core-utils-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.0.0-beta4@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\SQLiteStudioRemote.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\hellocharts-library-1.5.8.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support.constraint:constraint-layout-1.0.0-beta4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-core-ui-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\android-logging-log4j-1.0.2.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\activation.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-v4-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-fragment-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:appcompat-v7-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-media-compat-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\android-studio-workspace\AccountBook\app\src\additionnal.jar:unspecified@jar" level="project" />
   </component>
 </module>

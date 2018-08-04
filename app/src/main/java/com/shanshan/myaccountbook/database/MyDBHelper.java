@@ -79,7 +79,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + IncomeOrExpensesDefinition.TABLE_INOREXP_NAME + " (" +
                     IncomeOrExpensesDefinition.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     IncomeOrExpensesDefinition.COLUMN_INOREXP_NAME + TEXT_TYPE + COMMA_SEP +
-                    IncomeOrExpensesDefinition.COLUMN_INOREXP_FLAG + INT +
+                    IncomeOrExpensesDefinition.COLUMN_INOREXP_FLAG + INT + COMMA_SEP +
+                    IncomeOrExpensesDefinition.DISABLE + INT +
                     " )";
 
     private static final String SQL_CREATE_ACCOUNT =
@@ -123,7 +124,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
             }
             dbPath += File.separator + "myaccount" + File.separator + "databases" + File.separator + DATABASE_NAME;
 
-            System.out.println("DataBase dir is " + dbPath);
             myLogger.debug("DataBase dir is " + dbPath);
 
             myDBHelper = new MyDBHelper(context, dbPath, null, MyDBHelper.DATABASE_VERSION);
@@ -148,7 +148,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_MONTHLY_STATISTICS);
         db.execSQL(SQL_CREATE_ANNUAL_STATISTICS);
 
-        System.out.println("Finish initiating databases...................");
         myLogger.debug("Finish initiating databases...................");
     }
 
@@ -160,18 +159,13 @@ public class MyDBHelper extends SQLiteOpenHelper {
         addAccount("北京银行储蓄卡");
         addAccount("工行储蓄卡");
         addAccount("支付宝");
-        addAccount("QQ红包");
         addAccount("百度钱包");
         addAccount("理财账户");
         addAccount("微信");
 
-        addIncomeAndExpenses("吃饭", DBTablesDefinition.EXPENSES);
-        addIncomeAndExpenses("外卖", DBTablesDefinition.EXPENSES);
-        addIncomeAndExpenses("超市", DBTablesDefinition.EXPENSES);
-        addIncomeAndExpenses("购物", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("生活开销", DBTablesDefinition.EXPENSES);
+        addIncomeAndExpenses("其他支出", DBTablesDefinition.EXPENSES);
         addIncomeAndExpenses("房租", DBTablesDefinition.EXPENSES);
-        addIncomeAndExpenses("水电煤、公交、话费等", DBTablesDefinition.EXPENSES);
-        addIncomeAndExpenses("杂项", DBTablesDefinition.EXPENSES);
 
         addIncomeAndExpenses("工资", DBTablesDefinition.INCOME);
         addIncomeAndExpenses("利息", DBTablesDefinition.INCOME);
@@ -651,7 +645,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-//                System.out.println("get account" + c.getString(1));
+//                System.out.printf("get account id %s name %s status %s\n" ,c.getInt(0) , c.getString(1), c.getInt(2) );
                 AccountsEntity dummyItem = new AccountsEntity(c.getInt(0), c.getString(1), c.getInt(2));
                 ACCOUNT_LIST.add(dummyItem);
             }
@@ -806,8 +800,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getSQLiteDatabase();
         ContentValues values = new ContentValues();
 
-        System.out.println("In addRecord function amount is " + amount);
-
         try {
             values.put(RecordsDefinition.COLUMN_RECORDS_ACCOUNT_NAME_ID, accountID);
             values.put(RecordsDefinition.COLUMN_RECORDS_DATE, dateStr);
@@ -832,7 +824,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     }
 
     public List<IncomeAndExpensesEntity> getIncomeAndExpenses() {
-        return getIncomeAndExpenses(null, null);
+        return getIncomeAndExpenses(IncomeOrExpensesDefinition.DISABLE + "=?", new String[]{"0"});
     }
 
     public List<IncomeAndExpensesEntity> getIncomeAndExpenses(String whereColumns, String[] whereValues) {
@@ -864,7 +856,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             );
 
             while (c.moveToNext()) {
-//                System.out.println("get income or expenses id is:" + c.getInt(0) + " , incomeorexpenses is " + c.getString(1));
+//                System.out.printf("get income or expenses id %s name %s flag %s (0 income, 1 expenses)\n" , c.getInt(0) , c.getString(1),c.getInt(2));
                 IncomeAndExpensesEntity dummyItem = new IncomeAndExpensesEntity(c.getInt(0), c.getString(1), c.getInt(2));
                 INCOME_AND_EXPENSES_LIST.add(dummyItem);
             }
@@ -877,7 +869,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void deleteIncomeOrExpenses(String id) {
         SQLiteDatabase db = this.getSQLiteDatabase();
         try {
-            db.delete(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME, IncomeOrExpensesDefinition.ID + "=? ", new String[]{id});
+            ContentValues values = new ContentValues();
+            values.put(IncomeOrExpensesDefinition.DISABLE, 1);
+
+            db.update(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME, values, IncomeOrExpensesDefinition.ID + "=? ", new String[]{id});
         } finally {
 
         }
@@ -891,6 +886,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 ContentValues values = new ContentValues();
                 values.put(IncomeOrExpensesDefinition.COLUMN_INOREXP_NAME, name);
                 values.put(IncomeOrExpensesDefinition.COLUMN_INOREXP_FLAG, flag);
+                values.put(IncomeOrExpensesDefinition.DISABLE, 0);
 
             /* Insert the new row, returning the primary key value of the new row*/
                 return db.insertWithOnConflict(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
@@ -904,7 +900,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getSQLiteDatabase();
         try {
             ContentValues values = new ContentValues();
-            values.put(AccountsDefinition.COLUMN_ACCOUNT_NAME, name);
+            values.put(IncomeOrExpensesDefinition.COLUMN_INOREXP_NAME, name);
 
             db.update(IncomeOrExpensesDefinition.TABLE_INOREXP_NAME, values, IncomeOrExpensesDefinition.ID + "=? ", new String[]{id});
         } finally {

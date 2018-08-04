@@ -6,17 +6,22 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.shanshan.myaccountbook.database.DBTablesDefinition;
+import com.shanshan.myaccountbook.entity.AccountsEntity;
 import com.shanshan.myaccountbook.util.MyAccountUtil;
 import com.shanshan.myaccountbook.util.MyLogger;
 import com.shanshan.myaccountbook.R;
@@ -60,6 +65,7 @@ public class AddRecordActivity extends Activity {
         super.onCreate(savedInstanceState);
         /*not display title*/
         setContentView(R.layout.activity_add_record);
+
         /*get the SqliteDatabasehelper*/
         myDBHelper = MyDBHelper.newInstance(this);
 
@@ -153,7 +159,7 @@ public class AddRecordActivity extends Activity {
 
         /*get account from table*/
         spinnerAccount = (Spinner) findViewById(R.id.spinner_account);
-        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_layout, myDBHelper.getAccount());
+        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_layout, myDBHelper.getAccount(DBTablesDefinition.AccountsDefinition.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(DBTablesDefinition.AccountsDefinition.ACCOUNT_AVAILABLE)}));
         /* set spinner text font size */
         adapterAccount.setDropDownViewResource(R.layout.spinner_drop_down_layout);
 
@@ -236,10 +242,12 @@ public class AddRecordActivity extends Activity {
 
     public void addRecord(View view) {
         String dateStr = MyAccountUtil.dateToString(MyAccountUtil.stringToDate(textView.getText().toString()));
-        System.out.println("输入的时间是" + dateStr + " or " + textView.getText().toString());
 
-        String accountId = String.valueOf(spinnerAccount.getSelectedItemId() + 1);
-        String incomeOrexpensesId = String.valueOf(spinnerIncomeOrExpenses.getSelectedItemId() + 1);
+        AccountsEntity accountsEntity = (AccountsEntity)adapterAccount.getItem(spinnerAccount.getSelectedItemPosition());
+        String accountId = String.valueOf(accountsEntity.getId());
+
+        IncomeAndExpensesEntity incomeAndExpensesEntity = (IncomeAndExpensesEntity) adapterIncomeOrExpenses.getItem(spinnerIncomeOrExpenses.getSelectedItemPosition());
+        String incomeOrexpensesId = String.valueOf(incomeAndExpensesEntity.getId());
         TextView textView = (TextView) findViewById(R.id.add_record_amount);
         String txt = textView.getText().toString();
         if (txt.length() == 0) {

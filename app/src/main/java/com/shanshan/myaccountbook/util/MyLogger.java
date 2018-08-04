@@ -21,17 +21,15 @@ public class MyLogger {
 
     public static Logger getMyLogger(String className) {
         if (MyAccountUtil.isSDCardMounted()) {
-            System.out.println("SD card has already mounted");
             logDir = Environment.getExternalStorageDirectory() + File.separator + "myaccount" + File.separator + "logs";
         } else {
-            System.out.println("SD card hasn't already mounted");
             logDir = MainActivity.getBaseDir() + File.separator + "myaccount" + File.separator + "logs";
         }
         File destDir = new File(logDir);
         if (!destDir.exists()) {
             Boolean isSuccess = destDir.mkdirs();
             if (!isSuccess)
-                System.out.println("create dir " + destDir + " failed.");
+                myLogger.debug("create dir " + destDir + " failed.");
         }
 
 
