@@ -30,9 +30,9 @@ public class ManageIncomeAndExpensesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDBHelper = MyDBHelper.newInstance(this);
-        adapterIncomeAndExpenses = new ArrayAdapter(this, R.layout.spinner_drop_down_layout);
+        adapterIncomeAndExpenses = new ArrayAdapter(this, R.layout.spinner_drop_down_normal);
         /* set spinner text font size */
-        adapterIncomeAndExpenses.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+        adapterIncomeAndExpenses.setDropDownViewResource(R.layout.spinner_drop_down_normal);
 
         setContentView(R.layout.activity_manage_income_and_expenses);
         ListView incomeAndExpensesList = (ListView) findViewById(R.id.list_income_and_expenses);

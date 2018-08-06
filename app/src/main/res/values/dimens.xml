@@ -5,6 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="divider_height">2dp</dimen>
     <dimen name="font_size">16sp</dimen>
+    <dimen name="spinner_font_size">18sp</dimen>
     <dimen name="small_margin">8dp</dimen>
 
     <dimen name="pie_chart_text1_size">20sp</dimen>

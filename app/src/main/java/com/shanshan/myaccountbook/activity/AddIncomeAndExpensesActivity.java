@@ -36,9 +36,9 @@ public class AddIncomeAndExpensesActivity extends Activity {
         myDBHelper = MyDBHelper.newInstance(this);
 
         spinnerIncomeOrExpenses = (Spinner) findViewById(R.id.spinner_income_expenses_type_income_expenses);
-        ArrayAdapter<String> spinnerIncomeAndExpensesArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_layout, getResources().getStringArray(R.array.income_expenses_item));
+        ArrayAdapter<String> spinnerIncomeAndExpensesArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_normal, getResources().getStringArray(R.array.income_expenses_item));
         /* set spinner text font size */
-        spinnerIncomeAndExpensesArrayAdapter.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+        spinnerIncomeAndExpensesArrayAdapter.setDropDownViewResource(R.layout.spinner_drop_down_normal);
 
         spinnerIncomeOrExpenses.setAdapter(spinnerIncomeAndExpensesArrayAdapter);
 

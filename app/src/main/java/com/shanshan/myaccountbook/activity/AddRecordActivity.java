@@ -6,15 +6,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -159,9 +156,9 @@ public class AddRecordActivity extends Activity {
 
         /*get account from table*/
         spinnerAccount = (Spinner) findViewById(R.id.spinner_account);
-        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_layout, myDBHelper.getAccount(DBTablesDefinition.AccountsDefinition.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(DBTablesDefinition.AccountsDefinition.ACCOUNT_AVAILABLE)}));
+        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_normal, myDBHelper.getAccount(DBTablesDefinition.AccountsDefinition.COLUMN_ACCOUNT_STATUS + "=?", new String[]{String.valueOf(DBTablesDefinition.AccountsDefinition.ACCOUNT_AVAILABLE)}));
         /* set spinner text font size */
-        adapterAccount.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+        adapterAccount.setDropDownViewResource(R.layout.spinner_drop_down_normal);
 
         spinnerAccount.setAdapter(adapterAccount);
 
@@ -196,10 +193,10 @@ public class AddRecordActivity extends Activity {
         /*get income or expenses from table*/
         spinnerIncomeOrExpenses = (Spinner) findViewById(R.id.spinner_income_expenses_type);
 
-        adapterIncomeOrExpenses = new ArrayAdapter(this, R.layout.spinner_drop_down_layout, myDBHelper.getIncomeAndExpenses());
+        adapterIncomeOrExpenses = new ArrayAdapter(this, R.layout.spinner_drop_down_normal, myDBHelper.getIncomeAndExpenses());
 
         /* set spinner text font size */
-        adapterIncomeOrExpenses.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+        adapterIncomeOrExpenses.setDropDownViewResource(R.layout.spinner_drop_down_normal);
 
         spinnerIncomeOrExpenses.setAdapter(adapterIncomeOrExpenses);
         if (previousRecord != null) {

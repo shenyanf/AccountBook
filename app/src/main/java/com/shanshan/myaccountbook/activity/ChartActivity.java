@@ -32,6 +32,7 @@ import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -44,7 +45,6 @@ import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.model.SubcolumnValue;
-import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
 import lecho.lib.hellocharts.view.PieChartView;
@@ -60,10 +60,9 @@ public class ChartActivity extends AppCompatActivity {
     private ArrayAdapter adapterEndYear = null;
     private static Spinner spinnerEndMonth = null;
     private ArrayAdapter adapterEndMonth = null;
-    private static List<Integer> years = MyAccountUtil.range(2010, 2021, 1);
-    private static List<Integer> months = MyAccountUtil.range(1, 13, 1);
     private static List<PlaceholderFragment> fragments = new ArrayList<PlaceholderFragment>();
-
+    private static List<String> years = new ArrayList<>();
+    private static List<String> months = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +81,12 @@ public class ChartActivity extends AppCompatActivity {
         vp.setAdapter(adapter);
 
         // 日期范围
+        String[] yearArr = getResources().getStringArray(R.array.spinner_years);
+        years = Arrays.asList(yearArr);
+        months = Arrays.asList(getResources().getStringArray(R.array.spinner_months));
+
         spinnerStartYear = (Spinner) findViewById(R.id.spinner_start_year);
-        adapterStartYear = new ArrayAdapter<Integer>(this, R.layout.spinner_drop_down_layout, years);
+        adapterStartYear = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
         spinnerStartYear.setAdapter(adapterStartYear);
         spinnerStartYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                        @Override
@@ -99,7 +102,7 @@ public class ChartActivity extends AppCompatActivity {
         );
 
         spinnerStartMonth = (Spinner) findViewById(R.id.spinner_start_month);
-        adapterStartMonth = new ArrayAdapter<Integer>(this, R.layout.spinner_drop_down_layout, months);
+        adapterStartMonth = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_normal, months);
         spinnerStartMonth.setAdapter(adapterStartMonth);
         spinnerStartMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                         @Override
@@ -116,7 +119,7 @@ public class ChartActivity extends AppCompatActivity {
 
 
         spinnerEndYear = (Spinner) findViewById(R.id.spinner_end_year);
-        adapterEndYear = new ArrayAdapter<Integer>(this, R.layout.spinner_drop_down_layout, years);
+        adapterEndYear = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_normal, years);
         spinnerEndYear.setAdapter(adapterEndYear);
         spinnerEndYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                      @Override
@@ -132,7 +135,7 @@ public class ChartActivity extends AppCompatActivity {
         );
 
         spinnerEndMonth = (Spinner) findViewById(R.id.spinner_end_month);
-        adapterEndMonth = new ArrayAdapter<Integer>(this, R.layout.spinner_drop_down_layout, months);
+        adapterEndMonth = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_normal, months);
         spinnerEndMonth.setAdapter(adapterEndMonth);
         spinnerEndMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                       @Override
@@ -147,11 +150,11 @@ public class ChartActivity extends AppCompatActivity {
                                                   }
         );
 
-        //设置默认日期
-        spinnerStartYear.setSelection(years.indexOf(MyAccountUtil.getCurrentYear()));
-        spinnerStartMonth.setSelection(months.indexOf(MyAccountUtil.getCurrentMonth()));
-        spinnerEndYear.setSelection(years.indexOf(MyAccountUtil.getCurrentYear()));
-        spinnerEndMonth.setSelection(months.indexOf(MyAccountUtil.getCurrentMonth()));
+        //设置默认日期，起始年2015，月1，数组从0开始计数
+        spinnerStartYear.setSelection(MyAccountUtil.getCurrentYear() - 2015);
+        spinnerStartMonth.setSelection(MyAccountUtil.getCurrentMonth() - 1);
+        spinnerEndYear.setSelection(MyAccountUtil.getCurrentYear() - 2015);
+        spinnerEndMonth.setSelection(MyAccountUtil.getCurrentMonth());
 
         myLogger.debug("PieChartsActivity create");
     }
@@ -365,27 +368,12 @@ public class ChartActivity extends AppCompatActivity {
 
             MyDBHelper myDBHelper = MyDBHelper.newInstance(null);
             SQLiteDatabase db = myDBHelper.getWritableDatabase();
-            int startMonth = months.get(spinnerStartMonth.getSelectedItemPosition());
+            String startMonth = months.get(spinnerStartMonth.getSelectedItemPosition());
             List<AxisValue> axisValues = new ArrayList<AxisValue>();
 
-            String startMonthStr = "";
-            if (startMonth < 10) {
-                startMonthStr = "0" + startMonth;
-            } else {
-                startMonthStr = String.valueOf(startMonth);
-            }
-
-            String startDate = years.get(spinnerStartYear.getSelectedItemPosition()) + "-" + startMonthStr + "-01";
-
-            int endMonth = months.get(spinnerEndMonth.getSelectedItemPosition()) + 1;
-
-            String endMonthStr = "";
-            if (endMonth < 10) {
-                endMonthStr = "0" + endMonth;
-            } else {
-                endMonthStr = String.valueOf(endMonth);
-            }
-            String endDate = years.get(spinnerEndYear.getSelectedItemPosition()) + "-" + endMonthStr;
+            String startDate = years.get(spinnerStartYear.getSelectedItemPosition()) + "-" + startMonth + "-01";
+            String endMonth = months.get(spinnerEndMonth.getSelectedItemPosition());
+            String endDate = years.get(spinnerEndYear.getSelectedItemPosition()) + "-" + endMonth;
 
             String sql = "select records.id,accounts.name,records.date,SUM(records.amount),incomeOrExpenses.name from records,accounts,incomeOrExpenses where " +
                     "records.accountNameId=accounts.id and records.incomeOrExpense=incomeOrExpenses.id and records.date between '" + startDate + "' and '" + endDate + "' and incomeOrExpenses.inOrOut=" + (isIncome ? "0" : "1") + " group by " + groupBy;

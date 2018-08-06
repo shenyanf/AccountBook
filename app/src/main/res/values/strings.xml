@@ -24,16 +24,16 @@
     <string name="title_activity_record_list">记录详情</string>
 
     <string name="manage_records">记录管理</string>
-    <array name="records_menu">
+    <string-array name="records_menu">
         <item>修改记录</item>
         <item>删除记录</item>
-    </array>
+    </string-array>
 
     <string name="manage_account">账户管理</string>
-    <array name="account_menu">
+    <string-array name="account_menu">
         <item>修改账户</item>
         <item>删除账户</item>
-    </array>
+    </string-array>
 
     <string name="add_account">添加账户</string>
     <string name="add_account_name">账户名称</string>
@@ -56,4 +56,31 @@
     <string name="month">月</string>
     <string name="year">年</string>
     <string name="to"> 至 </string>
+    <string-array name="spinner_years">
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+    </string-array>
+    <string-array name="spinner_months">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>

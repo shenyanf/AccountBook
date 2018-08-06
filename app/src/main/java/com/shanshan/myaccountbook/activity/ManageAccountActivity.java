@@ -30,8 +30,8 @@ public class ManageAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDBHelper = MyDBHelper.newInstance(this);
-        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_layout);
-        adapterAccount.setDropDownViewResource(R.layout.spinner_drop_down_layout);
+        adapterAccount = new ArrayAdapter(this, R.layout.spinner_drop_down_normal);
+        adapterAccount.setDropDownViewResource(R.layout.spinner_drop_down_normal);
 
         setContentView(R.layout.activity_manage_account);
         accountListView = (ListView) findViewById(R.id.list_account);
