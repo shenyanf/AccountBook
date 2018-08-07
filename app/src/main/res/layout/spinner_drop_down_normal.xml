@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
-    style="?android:attr/spinnerDropDownItemStyle"
+    style="?android:attr/spinnerItemStyle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:autoLink="all"
     android:ellipsize="marquee"
-    android:singleLine="true"
-    android:textSize="@dimen/spinner_font_size"
-    android:padding="10dp"/>
+    android:singleLine="true" />

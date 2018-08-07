@@ -86,7 +86,7 @@ public class ChartActivity extends AppCompatActivity {
         months = Arrays.asList(getResources().getStringArray(R.array.spinner_months));
 
         spinnerStartYear = (Spinner) findViewById(R.id.spinner_start_year);
-        adapterStartYear = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        adapterStartYear = new ArrayAdapter<String>(this, R.layout.spinner_drop_down_normal, years);
         spinnerStartYear.setAdapter(adapterStartYear);
         spinnerStartYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                        @Override

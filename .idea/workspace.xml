@@ -57,24 +57,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcc345be-62aa-4024-ac61-b566161e4e89" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddIncomeAndExpensesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddIncomeAndExpensesActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddRecordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/AddRecordActivity.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageIncomeAndExpensesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageIncomeAndExpensesActivity.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_layout.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml" />
     </list>
     <ignored path="My Account Book.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -146,31 +132,8 @@
       <file leaf-file-name="ChartActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simple_spinner_dropdown_item.xml" pinned="false" current-in-tab="false">
-        <entry file="file://E:/sdk/platforms/android-24/data/res/layout/simple_spinner_dropdown_item.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="attrs.xml" pinned="false" current-in-tab="false">
-        <entry file="file://E:/sdk/platforms/android-24/data/res/values/attrs.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="705" column="20" lean-forward="false" selection-start-line="705" selection-start-column="20" selection-end-line="705" selection-end-column="20" />
+            <state relative-caret-position="242">
+              <caret line="103" column="25" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -179,11 +142,9 @@
       <file leaf-file-name="spinner_drop_down_normal.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-              <folding>
-                <element signature="e#358#384#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="154">
+              <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
@@ -194,28 +155,61 @@
       <file leaf-file-name="activity_chart.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1703">
-              <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+            <state relative-caret-position="242">
+              <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
               <folding>
-                <element signature="e#1218#1244#0" expanded="true" />
-                <element signature="e#1405#1419#0" expanded="true" />
-                <element signature="e#1453#1479#0" expanded="true" />
-                <element signature="e#1742#1768#0" expanded="true" />
-                <element signature="e#1929#1944#0" expanded="true" />
-                <element signature="e#1978#2004#0" expanded="true" />
-                <element signature="e#2520#2532#0" expanded="true" />
-                <element signature="e#2566#2592#0" expanded="true" />
-                <element signature="e#3102#3128#0" expanded="true" />
-                <element signature="e#3289#3303#0" expanded="true" />
-                <element signature="e#3337#3363#0" expanded="true" />
-                <element signature="e#3624#3650#0" expanded="true" />
-                <element signature="e#3811#3826#0" expanded="true" />
-                <element signature="e#3860#3886#0" expanded="true" />
+                <element signature="e#876#902#0" expanded="true" />
+                <element signature="e#1063#1077#0" expanded="true" />
+                <element signature="e#1111#1137#0" expanded="true" />
+                <element signature="e#1400#1426#0" expanded="true" />
+                <element signature="e#1587#1602#0" expanded="true" />
+                <element signature="e#1636#1662#0" expanded="true" />
+                <element signature="e#2016#2028#0" expanded="true" />
+                <element signature="e#2062#2088#0" expanded="true" />
+                <element signature="e#2493#2519#0" expanded="true" />
+                <element signature="e#2680#2694#0" expanded="true" />
+                <element signature="e#2728#2754#0" expanded="true" />
+                <element signature="e#3015#3041#0" expanded="true" />
+                <element signature="e#3202#3217#0" expanded="true" />
+                <element signature="e#3251#3277#0" expanded="true" />
               </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="57" column="57" lean-forward="false" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spinner_raow_selector.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/spinner_raow_selector.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dimens.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -232,8 +226,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chart</find>
-      <find>relative</find>
       <find>list</find>
       <find>list_type</find>
       <find>chartactivity</find>
@@ -259,9 +251,11 @@
       <find>System.out.print</find>
       <find>layout_gravity</find>
       <find>textalli</find>
-      <find>textAlignment</find>
       <find>font_size</find>
       <find>ellipsize</find>
+      <find>drop</find>
+      <find>textAlignment</find>
+      <find>padding</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -2008,13 +2002,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/spinner_drop_down_normal.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/spinner_raow_selector.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/spinner_raow_selector.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml" />
       </list>
     </option>
   </component>
@@ -2145,47 +2139,6 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AccountBook" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AccountBook" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="drawable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AccountBook" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AccountBook" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="gradle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AccountBook" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="gradle" type="462c0819:PsiDirectoryNode" />
-              <item name="wrapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AccountBook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -2744,7 +2697,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25274727" sideWeight="0.48594132" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25494507" sideWeight="0.48594132" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2624811" sideWeight="0.50966185" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2860,46 +2813,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/sdk/sources/android-25/android/os/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/sdk/sources/android-25/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/sdk/extras/android/m2repository/com/android/support/appcompat-v7/24.2.1/appcompat-v7-24.2.1-sources.jar!/android/support/v7/app/AppCompatActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="547" column="0" lean-forward="false" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ManageAccountActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="63" column="76" lean-forward="false" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/refs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/ids.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -3158,27 +3071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="49" column="87" lean-forward="false" selection-start-line="49" selection-start-column="87" selection-end-line="49" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_pick.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/sdk/sources/android-24/android/widget/LinearLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="682">
@@ -3187,69 +3079,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/sdk/sources/android-24/android/widget/TextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="272" column="37" lean-forward="false" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/shanshan/myaccountbook/ApplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/spinner_raow_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://E:/sdk/platforms/android-24/data/res/values/attrs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="705" column="20" lean-forward="false" selection-start-line="705" selection-start-column="20" selection-end-line="705" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/sdk/platforms/android-24/data/res/layout/simple_spinner_dropdown_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-          <folding>
-            <element signature="e#358#384#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -3265,25 +3098,137 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/ic_pickdown-web.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/ic_launcher-web.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/ic_pickup-web.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://E:/sdk/platforms/android-24/data/res/layout/simple_spinner_dropdown_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/sdk/platforms/android-24/data/res/values/attrs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="705" column="20" lean-forward="false" selection-start-line="705" selection-start-column="20" selection-end-line="705" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/sdk/sources/android-24/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6704" column="32" lean-forward="false" selection-start-line="6704" selection-start-column="19" selection-end-line="6704" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_pick.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shanshan/myaccountbook/activity/ChartActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="103" column="25" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_drop_down_normal.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="57" column="57" lean-forward="false" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/spinner_raow_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1703">
-          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        <state relative-caret-position="242">
+          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding>
-            <element signature="e#1218#1244#0" expanded="true" />
-            <element signature="e#1405#1419#0" expanded="true" />
-            <element signature="e#1453#1479#0" expanded="true" />
-            <element signature="e#1742#1768#0" expanded="true" />
-            <element signature="e#1929#1944#0" expanded="true" />
-            <element signature="e#1978#2004#0" expanded="true" />
-            <element signature="e#2520#2532#0" expanded="true" />
-            <element signature="e#2566#2592#0" expanded="true" />
-            <element signature="e#3102#3128#0" expanded="true" />
-            <element signature="e#3289#3303#0" expanded="true" />
-            <element signature="e#3337#3363#0" expanded="true" />
-            <element signature="e#3624#3650#0" expanded="true" />
-            <element signature="e#3811#3826#0" expanded="true" />
-            <element signature="e#3860#3886#0" expanded="true" />
+            <element signature="e#876#902#0" expanded="true" />
+            <element signature="e#1063#1077#0" expanded="true" />
+            <element signature="e#1111#1137#0" expanded="true" />
+            <element signature="e#1400#1426#0" expanded="true" />
+            <element signature="e#1587#1602#0" expanded="true" />
+            <element signature="e#1636#1662#0" expanded="true" />
+            <element signature="e#2016#2028#0" expanded="true" />
+            <element signature="e#2062#2088#0" expanded="true" />
+            <element signature="e#2493#2519#0" expanded="true" />
+            <element signature="e#2680#2694#0" expanded="true" />
+            <element signature="e#2728#2754#0" expanded="true" />
+            <element signature="e#3015#3041#0" expanded="true" />
+            <element signature="e#3202#3217#0" expanded="true" />
+            <element signature="e#3251#3277#0" expanded="true" />
           </folding>
         </state>
       </provider>
